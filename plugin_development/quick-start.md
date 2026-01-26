@@ -351,24 +351,27 @@ class HelloWorldPlugin(NekoPluginBase):
         # 使用插件自带的 logger (推荐!)
         self.logger.info("Hello World Plugin 已加载!")
     
-    @plugin_entry(id="hello")
+    @plugin_entry(
+        id="hello",
+        input_schema={"type": "object","properties": {"name": {"type": "string", "description": "名字", "default": "World"}}})
     @worker(timeout=10.0)
-    def hello(self, input_data):
-        name = input_data.get("name", "World")
+    def hello(self, name: str = "World", **kwargs):
         # 记录日志
         self.logger.info(f"收到问候请求: name={name}")
         return {"message": f"Hello, {name}!"}
 ```
 
-**代码说明** (只有 18 行!):
+**代码说明** (只有 19 行!):
 - 第 1-2 行: 导入必需的类和装饰器
-- 第 6 行: `@neko_plugin` 装饰器标记这是一个插件
-- 第 7 行: 插件类,继承 `NekoPluginBase`
-- 第 8-10 行: 初始化方法,必须调用 `super().__init__(ctx)`
+- 第 5 行: `@neko_plugin` 装饰器标记这是一个插件
+- 第 6 行: 插件类,继承 `NekoPluginBase`
+- 第 7-8 行: 初始化方法,必须调用 `super().__init__(ctx)`
 - 第 10 行: 使用 `self.logger` 记录日志 (**推荐使用 logger 而不是 print**)
-- 第 12 行: `@plugin_entry(id="hello")` 装饰器 (**必须提供 id 参数**)
-- 第 13 行: `@worker(timeout=10.0)` 装饰器
-- 第 14-18 行: `hello` 方法,接收输入,记录日志,返回问候消息
+- 第 12-13 行: `@plugin_entry(id="hello")` 装饰器 (**必须提供 id 参数**)
+- 第 14 行: 提供输入参数,**name**参数会在下方hello方法中被传递
+- 第 15 行: `@worker(timeout=10.0)` 装饰器,设置超时时间
+- 第 16-18 行: `hello` 方法,使用**具名参数**接收输入,记录日志
+- 第 19 行: 返回问候消息
 
 **为什么使用 `self.logger` 而不是 `print`?**
 
@@ -516,13 +519,13 @@ def on_shutdown(self):
 ```python
 # 异步入口点 (推荐)
 @plugin_entry(id="my_async_function")  # 必须提供 id
-async def my_async_function(self, input_data):
+async def my_async_function(self, param1: str = "default", **kwargs):
     return ok({"result": "success"})
 
 # 同步入口点 (需要添加 @worker)
 @plugin_entry(id="my_sync_function")  # 必须提供 id
 @worker(timeout=10.0)
-def my_sync_function(self, input_data):
+def my_sync_function(self, param1: str = "default", **kwargs):
     return ok({"result": "success"})
 ```
 
@@ -530,9 +533,46 @@ def my_sync_function(self, input_data):
 - `id` 参数通常与函数名相同,用于标识这个入口点
 - 可以是异步函数 (`async def`) 或同步函数 (`def`)
 - 同步函数**强烈推荐**添加 `@worker(timeout=10.0)` 装饰器
-- 接收 `input_data` 参数 (字典)
+- **使用具名参数接收输入** (不是 `input_data` 字典)
+- 必须添加 `**kwargs` 接收额外参数 (如 `_ctx`)
 - 返回字典 (推荐使用 `ok()` 或 `err()`)
 
+**参数传递说明**:
+
+当调用插件入口点时,参数会通过 `**kwargs` 解包传递:
+
+```python
+@plugin_entry(id="hello")
+@worker(timeout=10.0)
+def hello(self, name: str = "World", age: int = 0, **kwargs):
+    # name 和 age 是你定义的业务参数
+    # **kwargs 会接收系统传递的额外参数
+    
+    # 获取运行上下文 (如果需要)
+    ctx_obj = kwargs.get("_ctx", {})
+    run_id = ctx_obj.get("run_id") if isinstance(ctx_obj, dict) else None
+    
+    return {"message": f"Hello, {name}! Age: {age}"}
+```
+**⚠️ 重要: 当plugin_entry使用自定义的输入时,必须添加 `input_schema`**
+
+```python
+# ✅ 正确: 必须提供 input_schema
+@plugin_entry(
+    id="hello",
+    input_schema={
+        "type": "object",
+        "properties": {
+            "name": {"type": "string", "description": "姓名", "default": "World"},
+            "age": {"type": "number", "description": "年龄", "default": 0}
+        }
+    }
+)
+@worker(timeout=10.0)
+def hello(self, name: str = "World", age: int = 0, **kwargs):
+    return {"message": f"Hello, {name}! Age: {age}"}
+    #其中name和age是自定义的输入参数
+```
 ---
 
 ## 第四步: 启动和测试插件
@@ -639,103 +679,22 @@ poetry run python -m plugin.user_plugin_server
 - 你会在这里看到插件的日志输出
 - 要停止服务器,按 `Ctrl + C`
 
-### 5. 检查插件状态
 
-**方法 A: 使用浏览器** (最简单)
-
-1. **打开浏览器** (Chrome, Firefox, Edge 等)
-
-2. **在地址栏输入**:
-   ```
-   http://127.0.0.1:48912/plugins
-   ```
-
-3. **按回车**
-
-4. **你应该看到**:
-
-```json
-{
-  "plugins": [
-    {
-      "id": "hello_world",
-      "name": "Hello World Plugin",
-      "version": "0.1.0",
-      "status": "running",
-      "enabled": true
-    }
-  ]
-}
-```
-
-**方法 B: 使用命令行**
-
-打开**新的**命令行窗口 (不要关闭服务器窗口):
-
-**Windows (PowerShell)**:
-```powershell
-Invoke-WebRequest -Uri "http://127.0.0.1:48912/plugins" | Select-Object -ExpandProperty Content
-```
-
-**Linux / macOS**:
-```bash
-curl http://127.0.0.1:48912/plugins
-```
-
-### 6. 测试插件功能
+### 5. 测试插件功能
 
 现在我们来调用插件的 `hello` 方法!
 
-**方法 A: 使用在线工具** (最简单)
+**使用在线工具** (最简单)
 
 1. 打开浏览器
-2. 访问: `http://127.0.0.1:48912/ui` (如果有前端界面)
-3. 或使用 Postman / Insomnia 等 API 测试工具
+2. 访问: `http://127.0.0.1:48912/ui`,复制到浏览器地址栏
+3. 使用ctrl+insert复制命令行给出的管理员验证码,然后复制到网页登录界面,或者点击**从剪切板获取**按钮
+4. 自动完成登录
+5. 在左侧找到**插件列表**,点击,在右侧找到你的插件
+6. 找到入口点,点击进入,点击右侧的触发按钮,输入参数,点击**触发**
+7. 你的插件会自动运行,点击左侧运行记录查看结果
 
-**方法 B: 使用命令行**
-
-打开**新的**命令行窗口:
-
-**Windows (PowerShell)**:
-```powershell
-# 创建运行请求
-$body = @{
-    plugin_id = "hello_world"
-    input = @{
-        name = "Alice"
-    }
-} | ConvertTo-Json
-
-Invoke-WebRequest -Uri "http://127.0.0.1:48912/runs" `
-    -Method POST `
-    -ContentType "application/json" `
-    -Body $body
-```
-
-**Linux / macOS**:
-```bash
-# 创建运行请求
-curl -X POST http://127.0.0.1:48912/runs \
-  -H "Content-Type: application/json" \
-  -d '{
-    "plugin_id": "hello_world",
-    "input": {
-      "name": "Alice"
-    }
-  }'
-```
-
-**成功的响应**:
-```json
-{
-  "run_id": "run_abc123",
-  "status": "pending",
-  "run_token": "eyJhbGc...",
-  "expires_at": "2026-01-26T15:30:00Z"
-}
-```
-
-### 7. 查看插件日志
+### 6. 查看插件日志
 
 **方法 A: 使用文件管理器**
 
@@ -834,8 +793,7 @@ def hello_run(self, name: str = "world", sleep_seconds: float = 0.6, **kwargs):
 # 简单示例 (只提供 id)
 @plugin_entry(id="hello")
 @worker(timeout=10.0)
-def hello(self, input_data):
-    name = input_data.get("name", "World")
+def hello(self, name: str = "World", **kwargs):
     return {"message": f"Hello, {name}!"}
 
 # 完整示例 (提供所有元数据)
@@ -879,8 +837,7 @@ class HelloWorldPlugin(NekoPluginBase):
     # ✅ 同步函数 (推荐新手使用)
     @plugin_entry(id="hello")  # 必须提供 id 参数!
     @worker(timeout=10.0)
-    def hello(self, input_data):
-        name = input_data.get("name", "World")
+    def hello(self, name: str = "World", **kwargs):
         # 可以直接写普通代码
         result = f"Hello, {name}!"
         return {"message": result}
@@ -888,9 +845,9 @@ class HelloWorldPlugin(NekoPluginBase):
     # 同步函数可以做任何事情
     @plugin_entry(id="process_file")
     @worker(timeout=30.0)
-    def process_file(self, input_data):
+    def process_file(self, file_path: str = "data.txt", **kwargs):
         # 读取文件
-        with open("data.txt", "r") as f:
+        with open(file_path, "r") as f:
             content = f.read()
         # 处理数据
         result = content.upper()
@@ -906,8 +863,7 @@ class HelloWorldPlugin(NekoPluginBase):
 class HelloWorldPlugin(NekoPluginBase):
     # 异步函数 (适合有异步编程经验的开发者)
     @plugin_entry(id="async_hello")
-    async def async_hello(self, input_data):
-        name = input_data.get("name", "World")
+    async def async_hello(self, name: str = "World", **kwargs):
         # 可以使用 await 调用异步操作
         config = await self.config.get("greeting", default="Hello")
         return {"message": f"{config}, {name}!"}
@@ -923,7 +879,6 @@ class HelloWorldPlugin(NekoPluginBase):
 | 网络请求 (requests) | 同步 + `@worker` | requests 是同步库 |
 | 需要调用插件 SDK 异步 API | 异步 | 如 `await self.config.get()` |
 | 网络请求 (aiohttp) | 异步 | aiohttp 是异步库 |
-| 数据库查询 (异步库) | 异步 | 如 asyncpg, motor |
 
 **重要提示**:
 - ✅ 同步函数**必须**添加 `@worker(timeout=10.0)` 装饰器
