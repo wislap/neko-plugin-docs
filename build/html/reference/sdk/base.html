@@ -1,0 +1,921 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="装饰器 API" href="decorators.html"><link rel="prev" title="API 参考" href="../index.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>NekoPluginBase - N.E.K.O Plugin SDK</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #6C5CE7;
+  --color-brand-content: #6C5CE7;
+  --color-api-background: #F8F7FF;
+  --color-api-background-hover: #EDEAFF;
+  --color-highlight-on-target: #F0EDFF;
+  --color-admonition-title--note: #6C5CE7;
+  --color-admonition-title-background--note: #F0EDFF;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">N.E.K.O Plugin SDK</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">N.E.K.O Plugin SDK</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting-started/index.html">快速上手</a><input aria-label="Toggle navigation of 快速上手" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">环境准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/first-plugin.html">第一个插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/project-structure.html">项目结构</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guide/index.html">开发指南</a><input aria-label="Toggle navigation of 开发指南" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/decorators.html">装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/context.html">上下文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/config.html">配置系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/responses.html">响应格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/state.html">状态持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/hooks.html">Hook 系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/router.html">路由器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/plugins-call.html">跨插件调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/database.html">数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/store.html">键值存储</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../architecture/index.html">系统架构</a><input aria-label="Toggle navigation of 系统架构" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/bus/index.html">Bus 通信系统</a><input aria-label="Toggle navigation of Bus 通信系统" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/records.html">记录与过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/messages.html">消息 (Messages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/events.html">事件 (Events)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/lifecycle.html">生命周期 (Lifecycle)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/conversations.html">对话 (Conversations)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/memory.html">记忆 (Memory)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/bus-list.html">BusList 操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/watchers.html">实时监听 (Watchers)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/runs/index.html">Run/Export 执行系统</a><input aria-label="Toggle navigation of Run/Export 执行系统" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-lifecycle.html">Run 状态机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-progress.html">进度上报</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/exports.html">Export 通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-api.html">HTTP &amp; WebSocket API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-storage.html">存储协议</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/message-plane/index.html">Message Plane 消息平面</a><input aria-label="Toggle navigation of Message Plane 消息平面" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/protocol.html">RPC 协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/stores.html">TopicStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/transport.html">传输层</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/bridge.html">PlaneBridge</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/adapter/index.html">Adapter 协议适配</a><input aria-label="Toggle navigation of Adapter 协议适配" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/modes.html">工作模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/gateway-core.html">Gateway Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/contracts.html">接口契约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/building-adapter.html">构建自定义 Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/internals/index.html">内部机制</a><input aria-label="Toggle navigation of 内部机制" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/ipc.html">进程间通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/worker.html">Worker 模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/call-chain.html">调用链追踪</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/registry.html">插件注册表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/host.html">Host 进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/state-machine.html">全局状态机</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">完整示例</a><input aria-label="Toggle navigation of 完整示例" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/hello-world.html">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/file-processor.html">文件处理插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/api-client.html">API 客户端插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/data-collector.html">数据采集插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/stateful-plugin.html">状态持久化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/router-plugin.html">路由器模块化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/hook-plugin.html">Hook 中间件插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/bus-watcher.html">Bus 实时监听插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/run-progress.html">Run 进度上报插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/mcp-adapter.html">MCP Adapter 示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API 参考</a><input aria-label="Toggle navigation of API 参考" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">NekoPluginBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorators.html">装饰器 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">PluginConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="router.html">PluginRouter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">Hook 系统 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">状态持久化 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">PluginDatabase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="store.html">PluginStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins (跨插件调用)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="responses.html">响应格式 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">MemoryClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-info.html">SystemInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">SDK 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/types.html">Bus 核心类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/records.html">BusRecord / BusFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/messages.html">MessageClient / MessageRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/events.html">EventClient / EventRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/lifecycle.html">LifecycleClient / LifecycleRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/conversations.html">ConversationClient / ConversationRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/watchers.html">BusListWatcher / BusListDelta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/base.html">AdapterBase / AdapterConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/gateway-core.html">AdapterGatewayCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/gateway-models.html">Gateway 数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/contracts.html">六管线接口契约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/types.html">Adapter 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/errors.html">ErrorCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/result.html">Ok / Err / Result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/exceptions.html">异常层级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/models.html">数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/events.html">事件类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/protocols.html">Protocol 接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server/runs.html">Run/Export 管理器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server/services.html">核心服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server/routes.html">HTTP API 端点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">常见问题</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/reference/sdk/base.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-plugin.sdk.base">
+<span id="nekopluginbase"></span><h1>NekoPluginBase<a class="headerlink" href="#module-plugin.sdk.base" title="链接到此标题。">¶</a></h1>
+<p>插件基类模块</p>
+<p>提供插件开发的基础类和接口。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.sdk.base.</span></span><span class="sig-name descname"><span class="pre">PluginMeta</span></span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#PluginMeta"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.PluginMeta" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>插件元数据（SDK 内部使用）</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.name" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.version">
+<span class="sig-name descname"><span class="pre">version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0.1.0'</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.version" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.sdk_version">
+<span class="sig-name descname"><span class="pre">sdk_version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0.1.0'</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.sdk_version" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.sdk_recommended">
+<span class="sig-name descname"><span class="pre">sdk_recommended</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.sdk_recommended" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.sdk_supported">
+<span class="sig-name descname"><span class="pre">sdk_supported</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.sdk_supported" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.sdk_untested">
+<span class="sig-name descname"><span class="pre">sdk_untested</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.sdk_untested" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.sdk_conflicts">
+<span class="sig-name descname"><span class="pre">sdk_conflicts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.sdk_conflicts" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.PluginMeta.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#plugin.sdk.base.PluginMeta.description" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.sdk.base.</span></span><span class="sig-name descname"><span class="pre">NekoPluginBase</span></span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">HookExecutorMixin</span></code></p>
+<p>插件都继承这个基类.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.__freezable__">
+<span class="sig-name descname"><span class="pre">__freezable__</span></span><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.__freezable__" title="链接到此定义。">¶</a></dt>
+<dd><p>声明需要持久化保存的属性名列表。
+示例: __freezable__ = [&quot;counter&quot;, &quot;cache&quot;, &quot;user_prefs&quot;]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.__persist_mode__">
+<span class="sig-name descname"><span class="pre">__persist_mode__</span></span><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.__persist_mode__" title="链接到此定义。">¶</a></dt>
+<dd><p>状态持久化模式配置（默认 &quot;off&quot;，需在 toml 中启用）。
+- &quot;auto&quot;: 所有 entry 执行后自动保存状态
+- &quot;manual&quot;: 只在 freeze 时保存，或在 &#64;plugin_entry(persist=True) 显式启用
+- &quot;off&quot;: 完全禁用持久化功能（默认）</p>
+<p>优先级：toml [plugin_state].persist_mode &gt; 类属性 &gt; 默认值</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.ctx">
+<span class="sig-name descname"><span class="pre">ctx</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PluginContext</span></span><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.ctx" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.get_input_schema">
+<span class="sig-name descname"><span class="pre">get_input_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.get_input_schema"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.get_input_schema" title="链接到此定义。">¶</a></dt>
+<dd><p>默认从类属性 input_schema 取.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.include_router">
+<span class="sig-name descname"><span class="pre">include_router</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">router</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.include_router"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.include_router" title="链接到此定义。">¶</a></dt>
+<dd><p>注册一个 PluginRouter（支持动态加载）</p>
+<p>将 Router 中定义的所有入口点注册到主插件中。
+Router 中的入口点可以访问主插件的 ctx、config、plugins 等功能。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>router</strong> (<a class="reference internal" href="router.html#plugin.sdk.router.PluginRouter" title="plugin.sdk.router.PluginRouter"><em>PluginRouter</em></a>) -- PluginRouter 实例</p></li>
+<li><p><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 可选的前缀，会覆盖 Router 自身的 prefix</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition- admonition">
+<p class="admonition-title">示例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">DebugRouter</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">MemoryRouter</span><span class="p">(),</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;mem_&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.exclude_router">
+<span class="sig-name descname"><span class="pre">exclude_router</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">router</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.exclude_router"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.exclude_router" title="链接到此定义。">¶</a></dt>
+<dd><p>卸载一个 PluginRouter（支持动态卸载）</p>
+<p>移除 Router 中定义的所有入口点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>router</strong> (<a class="reference internal" href="router.html#plugin.sdk.router.PluginRouter" title="plugin.sdk.router.PluginRouter"><em>PluginRouter</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- PluginRouter 实例或 Router 名称字符串</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果成功卸载，False 如果未找到</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition- admonition">
+<p class="admonition-title">示例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">exclude_router</span><span class="p">(</span><span class="n">my_router</span><span class="p">)</span>  <span class="c1"># 通过实例卸载</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">exclude_router</span><span class="p">(</span><span class="s2">&quot;MyRouter&quot;</span><span class="p">)</span>  <span class="c1"># 通过名称卸载</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.get_router">
+<span class="sig-name descname"><span class="pre">get_router</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.get_router"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.get_router" title="链接到此定义。">¶</a></dt>
+<dd><p>通过名称获取已注册的 Router</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- Router 名称</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>PluginRouter 实例，如果未找到则返回 None</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="router.html#plugin.sdk.router.PluginRouter" title="plugin.sdk.router.PluginRouter">PluginRouter</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.list_routers">
+<span class="sig-name descname"><span class="pre">list_routers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.list_routers"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.list_routers" title="链接到此定义。">¶</a></dt>
+<dd><p>获取所有已注册的 Router 名称列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.register_static_ui">
+<span class="sig-name descname"><span class="pre">register_static_ui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'static'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'index.html'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_control</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'public,</span> <span class="pre">max-age=3600'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.register_static_ui"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.register_static_ui" title="链接到此定义。">¶</a></dt>
+<dd><p>显式注册静态 UI 文件目录</p>
+<p>插件必须调用此方法才能启用静态 UI 功能。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 静态文件目录（相对于插件目录），默认 &quot;static&quot;</p></li>
+<li><p><strong>index_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 入口文件名，默认 &quot;index.html&quot;</p></li>
+<li><p><strong>cache_control</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 缓存控制头，默认 &quot;public, max-age=3600&quot;</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果注册成功</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition- admonition">
+<p class="admonition-title">示例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 在 on_startup 中调用</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@lifecycle</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="bp">self</span><span class="o">.</span><span class="n">register_static_ui</span><span class="p">(</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.get_static_ui_config">
+<span class="sig-name descname"><span class="pre">get_static_ui_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.get_static_ui_config"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.get_static_ui_config" title="链接到此定义。">¶</a></dt>
+<dd><p>获取静态 UI 配置</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a>] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.register_dynamic_entry">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">register_dynamic_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'action'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.register_dynamic_entry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.register_dynamic_entry" title="链接到此定义。">¶</a></dt>
+<dd><p>动态注册一个 entry</p>
+<p>在运行时创建并注册一个新的 entry，会通知主进程更新 entry 列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 的唯一标识符</p></li>
+<li><p><strong>handler</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(位于 Python v3.14)"><em>Callable</em></a>) -- 处理函数（async 或 sync）</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 显示名称（默认使用 entry_id）</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- 描述信息</p></li>
+<li><p><strong>input_schema</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a><em>] </em><em>| </em><em>None</em>) -- 输入参数的 JSON Schema</p></li>
+<li><p><strong>kind</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 类型（action/service/hook/custom）</p></li>
+<li><p><strong>auto_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><em>bool</em></a>) -- 是否自动启动</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果注册成功</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="admonition- admonition">
+<p class="admonition-title">示例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">arg1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">register_dynamic_entry</span><span class="p">(</span><span class="s2">&quot;my_entry&quot;</span><span class="p">,</span> <span class="n">my_handler</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;My Entry&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.unregister_dynamic_entry">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">unregister_dynamic_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.unregister_dynamic_entry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.unregister_dynamic_entry" title="链接到此定义。">¶</a></dt>
+<dd><p>注销一个动态 entry</p>
+<p>移除之前通过 register_dynamic_entry 注册的 entry。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 的唯一标识符</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果注销成功，False 如果 entry 不存在</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.enable_entry">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">enable_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.enable_entry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.enable_entry" title="链接到此定义。">¶</a></dt>
+<dd><p>启用一个 entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 的唯一标识符</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果启用成功</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.disable_entry">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">disable_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.disable_entry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.disable_entry" title="链接到此定义。">¶</a></dt>
+<dd><p>禁用一个 entry</p>
+<p>禁用后，entry 仍然存在但不会被调用。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 的唯一标识符</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True 如果禁用成功</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.is_entry_enabled">
+<span class="sig-name descname"><span class="pre">is_entry_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.is_entry_enabled"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.is_entry_enabled" title="链接到此定义。">¶</a></dt>
+<dd><p>检查 entry 是否启用</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>) -- entry 的唯一标识符</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>True/False 表示启用/禁用状态，None 表示 entry 不存在</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.list_entries">
+<span class="sig-name descname"><span class="pre">list_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_disabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.list_entries"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.list_entries" title="链接到此定义。">¶</a></dt>
+<dd><p>列出所有 entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_disabled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><em>bool</em></a>) -- 是否包含禁用的 entry</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>entry 信息列表</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.collect_entries">
+<span class="sig-name descname"><span class="pre">collect_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrap_with_hooks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.collect_entries"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.collect_entries" title="链接到此定义。">¶</a></dt>
+<dd><p>收集所有入口点，包括：
+1. 插件自身的方法（带 &#64;plugin_entry 等装饰器）
+2. 所有注册的 Router 中的入口点</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wrap_with_hooks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><em>bool</em></a>) -- 是否用 Hook 包装 handler（默认 True）</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a>, <a class="reference internal" href="../types/events.html#plugin._types.events.EventHandler" title="plugin._types.events.EventHandler"><em>EventHandler</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.report_status">
+<span class="sig-name descname"><span class="pre">report_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.report_status"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.report_status" title="链接到此定义。">¶</a></dt>
+<dd><p>插件内部调用此方法上报状态。
+通过 ctx.update_status 把状态发回主进程。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>status</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a><em>]</em>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.sdk.base.NekoPluginBase.enable_file_logging">
+<span class="sig-name descname"><span class="pre">enable_file_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backup_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/base.html#NekoPluginBase.enable_file_logging"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.base.NekoPluginBase.enable_file_logging" title="链接到此定义。">¶</a></dt>
+<dd><p>启用插件文件日志功能（使用loguru）</p>
+<p>为插件创建独立的文件日志，日志文件保存在插件的logs目录下。
+日志会同时输出到文件和控制台（终端）。
+自动管理日志文件数量，支持日志轮转。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_level</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>) -- 日志级别（字符串：&quot;DEBUG&quot;, &quot;INFO&quot;, &quot;WARNING&quot;, &quot;ERROR&quot;），默认使用配置中的PLUGIN_LOG_LEVEL</p></li>
+<li><p><strong>max_bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a><em> | </em><em>None</em>) -- 单个日志文件最大大小（字节），默认使用配置中的PLUGIN_LOG_MAX_BYTES</p></li>
+<li><p><strong>backup_count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a><em> | </em><em>None</em>) -- 保留的备份文件数量，默认使用配置中的PLUGIN_LOG_BACKUP_COUNT</p></li>
+<li><p><strong>max_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a><em> | </em><em>None</em>) -- 最多保留的日志文件总数，默认使用配置中的PLUGIN_LOG_MAX_FILES</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>配置好的loguru logger实例（已添加文件handler和控制台handler）</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a></p>
+</dd>
+</dl>
+<dl>
+<dt>使用示例:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
+class MyPlugin(NekoPluginBase):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>def __init__(self, ctx):</dt><dd><p>super().__init__(ctx)
+# 启用文件日志（同时输出到文件和控制台）
+self.file_logger = self.enable_file_logging(log_level=&quot;DEBUG&quot;)
+# 使用file_logger记录日志，会同时显示在终端和保存到文件
+self.file_logger.info(&quot;Plugin initialized&quot;)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+</dd>
+<dt>注意:</dt><dd><ul class="simple">
+<li><p>日志文件保存在 <cite>{plugin_dir}/logs/</cite> 目录下</p></li>
+<li><p>日志文件名格式：<a href="#id9"><span class="problematic" id="id10">`</span></a>{plugin_id}_{YYYYMMDD_HHMMSS}.log`（包含日期和时间）</p></li>
+<li><p>日志会同时输出到文件和控制台（终端）</p></li>
+<li><p>当日志文件达到最大大小时会自动轮转</p></li>
+<li><p>超过最大文件数量限制的旧日志会自动删除</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="decorators.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">装饰器 API</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API 参考</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2026, N.E.K.O Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="#" aria-label="N.E.K.O"><span>Built with Sphinx &amp; Furo</span></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">NekoPluginBase</a><ul>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta"><code class="docutils literal notranslate"><span class="pre">PluginMeta</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.id"><code class="docutils literal notranslate"><span class="pre">PluginMeta.id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.name"><code class="docutils literal notranslate"><span class="pre">PluginMeta.name</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.version"><code class="docutils literal notranslate"><span class="pre">PluginMeta.version</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.sdk_version"><code class="docutils literal notranslate"><span class="pre">PluginMeta.sdk_version</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.sdk_recommended"><code class="docutils literal notranslate"><span class="pre">PluginMeta.sdk_recommended</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.sdk_supported"><code class="docutils literal notranslate"><span class="pre">PluginMeta.sdk_supported</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.sdk_untested"><code class="docutils literal notranslate"><span class="pre">PluginMeta.sdk_untested</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.sdk_conflicts"><code class="docutils literal notranslate"><span class="pre">PluginMeta.sdk_conflicts</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.PluginMeta.description"><code class="docutils literal notranslate"><span class="pre">PluginMeta.description</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.__freezable__"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.__freezable__</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.__persist_mode__"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.__persist_mode__</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.ctx"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.ctx</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.get_input_schema"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.get_input_schema()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.include_router"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.include_router()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.exclude_router"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.exclude_router()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.get_router"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.get_router()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.list_routers"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.list_routers()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.register_static_ui"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.register_static_ui()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.get_static_ui_config"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.get_static_ui_config()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.register_dynamic_entry"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.register_dynamic_entry()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.unregister_dynamic_entry"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.unregister_dynamic_entry()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.enable_entry"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.enable_entry()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.disable_entry"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.disable_entry()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.is_entry_enabled"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.is_entry_enabled()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.list_entries"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.list_entries()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.collect_entries"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.collect_entries()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.report_status"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.report_status()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.sdk.base.NekoPluginBase.enable_file_logging"><code class="docutils literal notranslate"><span class="pre">NekoPluginBase.enable_file_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=9becfed8"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/custom.js?v=b75771b5"></script>
+    </body>
+</html>

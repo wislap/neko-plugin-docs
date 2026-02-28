@@ -1,0 +1,1574 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>plugin.sdk.router - N.E.K.O Plugin SDK</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=57c836ec" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #6C5CE7;
+  --color-brand-content: #6C5CE7;
+  --color-api-background: #F8F7FF;
+  --color-api-background-hover: #EDEAFF;
+  --color-highlight-on-target: #F0EDFF;
+  --color-admonition-title--note: #6C5CE7;
+  --color-admonition-title-background--note: #F0EDFF;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">N.E.K.O Plugin SDK</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">N.E.K.O Plugin SDK</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../getting-started/index.html">快速上手</a><input aria-label="Toggle navigation of 快速上手" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting-started/installation.html">环境准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting-started/first-plugin.html">第一个插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting-started/project-structure.html">项目结构</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guide/index.html">开发指南</a><input aria-label="Toggle navigation of 开发指南" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/decorators.html">装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/context.html">上下文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/config.html">配置系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/responses.html">响应格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/state.html">状态持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/hooks.html">Hook 系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/router.html">路由器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/plugins-call.html">跨插件调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/database.html">数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guide/store.html">键值存储</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../architecture/index.html">系统架构</a><input aria-label="Toggle navigation of 系统架构" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../architecture/bus/index.html">Bus 通信系统</a><input aria-label="Toggle navigation of Bus 通信系统" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/records.html">记录与过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/messages.html">消息 (Messages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/events.html">事件 (Events)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/lifecycle.html">生命周期 (Lifecycle)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/conversations.html">对话 (Conversations)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/memory.html">记忆 (Memory)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/bus-list.html">BusList 操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/bus/watchers.html">实时监听 (Watchers)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../architecture/runs/index.html">Run/Export 执行系统</a><input aria-label="Toggle navigation of Run/Export 执行系统" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/runs/run-lifecycle.html">Run 状态机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/runs/run-progress.html">进度上报</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/runs/exports.html">Export 通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/runs/run-api.html">HTTP &amp; WebSocket API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/runs/run-storage.html">存储协议</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../architecture/message-plane/index.html">Message Plane 消息平面</a><input aria-label="Toggle navigation of Message Plane 消息平面" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/message-plane/protocol.html">RPC 协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/message-plane/stores.html">TopicStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/message-plane/transport.html">传输层</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/message-plane/bridge.html">PlaneBridge</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../architecture/adapter/index.html">Adapter 协议适配</a><input aria-label="Toggle navigation of Adapter 协议适配" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/adapter/modes.html">工作模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/adapter/gateway-core.html">Gateway Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/adapter/contracts.html">接口契约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/adapter/building-adapter.html">构建自定义 Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../architecture/internals/index.html">内部机制</a><input aria-label="Toggle navigation of 内部机制" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/ipc.html">进程间通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/worker.html">Worker 模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/call-chain.html">调用链追踪</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/registry.html">插件注册表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/host.html">Host 进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture/internals/state-machine.html">全局状态机</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../examples/index.html">完整示例</a><input aria-label="Toggle navigation of 完整示例" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/hello-world.html">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/file-processor.html">文件处理插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/api-client.html">API 客户端插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/data-collector.html">数据采集插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/stateful-plugin.html">状态持久化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/router-plugin.html">路由器模块化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/hook-plugin.html">Hook 中间件插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/bus-watcher.html">Bus 实时监听插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/run-progress.html">Run 进度上报插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/mcp-adapter.html">MCP Adapter 示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference/index.html">API 参考</a><input aria-label="Toggle navigation of API 参考" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/base.html">NekoPluginBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/decorators.html">装饰器 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/config.html">PluginConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/router.html">PluginRouter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/hooks.html">Hook 系统 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/state.html">状态持久化 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/database.html">PluginDatabase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/store.html">PluginStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/plugins.html">Plugins (跨插件调用)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/responses.html">响应格式 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/memory.html">MemoryClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/system-info.html">SystemInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sdk/types.html">SDK 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/types.html">Bus 核心类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/records.html">BusRecord / BusFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/messages.html">MessageClient / MessageRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/events.html">EventClient / EventRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/lifecycle.html">LifecycleClient / LifecycleRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/conversations.html">ConversationClient / ConversationRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/bus/watchers.html">BusListWatcher / BusListDelta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/adapter/base.html">AdapterBase / AdapterConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/adapter/gateway-core.html">AdapterGatewayCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/adapter/gateway-models.html">Gateway 数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/adapter/contracts.html">六管线接口契约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/adapter/types.html">Adapter 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/errors.html">ErrorCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/result.html">Ok / Err / Result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/exceptions.html">异常层级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/models.html">数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/events.html">事件类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/types/protocols.html">Protocol 接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/server/runs.html">Run/Export 管理器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/server/services.html">核心服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/server/routes.html">HTTP API 端点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">常见问题</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>plugin.sdk.router 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">PluginRouter - 插件路由器模块</span>
+
+<span class="sd">提供类似 FastAPI Router 的模块化入口点组织方式。</span>
+<span class="sd">允许开发者将插件功能拆分到多个独立的 Router 中，提升代码可读性和可维护性。</span>
+
+<span class="sd">基本用法::</span>
+
+<span class="sd">    from plugin.sdk import PluginRouter, NekoPluginBase, neko_plugin, plugin_entry, ok</span>
+<span class="sd">    </span>
+<span class="sd">    # 定义一个独立的 Router</span>
+<span class="sd">    class DebugRouter(PluginRouter):</span>
+<span class="sd">        @plugin_entry(id=&quot;config_debug&quot;)</span>
+<span class="sd">        async def config_debug(self, **_):</span>
+<span class="sd">            cfg = await self.config.dump()</span>
+<span class="sd">            return ok(data={&quot;config&quot;: cfg})</span>
+<span class="sd">    </span>
+<span class="sd">    # 在主插件中注册 Router</span>
+<span class="sd">    @neko_plugin</span>
+<span class="sd">    class MyPlugin(NekoPluginBase):</span>
+<span class="sd">        def __init__(self, ctx):</span>
+<span class="sd">            super().__init__(ctx)</span>
+<span class="sd">            self.include_router(DebugRouter())</span>
+<span class="sd">            self.include_router(MemoryRouter(), prefix=&quot;mem_&quot;)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventHandler</span><span class="p">,</span> <span class="n">EventMeta</span><span class="p">,</span> <span class="n">EVENT_META_ATTR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">HookMeta</span><span class="p">,</span> <span class="n">HookHandler</span><span class="p">,</span> <span class="n">HOOK_META_ATTR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.hook_executor</span><span class="w"> </span><span class="kn">import</span> <span class="n">HookExecutorMixin</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">NekoPluginBase</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginConfig</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plugins</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.store</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginStore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginDatabase</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">plugin.core.context</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginContext</span>
+
+<span class="c1"># 类型变量</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PluginRouterError">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouterError">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginRouterError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Router 相关错误</span>
+<span class="sd">    </span>
+<span class="sd">    常见错误场景:</span>
+<span class="sd">    - Router 未绑定到插件就访问属性</span>
+<span class="sd">    - 重复绑定 Router</span>
+<span class="sd">    - 依赖注入失败</span>
+<span class="sd">    - 绑定后修改 prefix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="PluginRouterError.not_bound">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouterError.not_bound">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">not_bound</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">router_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;access properties&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginRouterError&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;创建未绑定错误&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Router &#39;</span><span class="si">{</span><span class="n">router_name</span><span class="si">}</span><span class="s2">&#39; is not bound to a plugin. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Cannot </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Call plugin.include_router(router) first.&quot;</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouterError.already_bound">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouterError.already_bound">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">already_bound</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">router_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginRouterError&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;创建重复绑定错误&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Router &#39;</span><span class="si">{</span><span class="n">router_name</span><span class="si">}</span><span class="s2">&#39; is already bound to plugin &#39;</span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;A router can only be bound to one plugin. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Create a new router instance if you need to use it in another plugin.&quot;</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouterError.dependency_missing">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouterError.dependency_missing">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dependency_missing</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">router_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dep_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginRouterError&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;创建依赖缺失错误&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Router &#39;</span><span class="si">{</span><span class="n">router_name</span><span class="si">}</span><span class="s2">&#39; requires dependency &#39;</span><span class="si">{</span><span class="n">dep_name</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;but it&#39;s not available in the main plugin. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Either add &#39;</span><span class="si">{</span><span class="n">dep_name</span><span class="si">}</span><span class="s2">&#39; to the main plugin or provide a default value in the router.&quot;</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouterError.prefix_change_after_bound">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouterError.prefix_change_after_bound">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prefix_change_after_bound</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">router_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginRouterError&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;创建绑定后修改 prefix 错误&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Cannot change prefix of router &#39;</span><span class="si">{</span><span class="n">router_name</span><span class="si">}</span><span class="s2">&#39; after it&#39;s bound to a plugin. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Set the prefix before calling include_router() or pass it as a parameter.&quot;</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PluginRouter">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginRouter</span><span class="p">(</span><span class="n">HookExecutorMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;插件路由器基类</span>
+<span class="sd">    </span>
+<span class="sd">    允许将插件入口点组织到独立的模块中，类似 FastAPI 的 APIRouter。</span>
+<span class="sd">    Router 中定义的 @plugin_entry、@lifecycle 等装饰器会被自动收集。</span>
+<span class="sd">    支持动态加载和卸载。</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        prefix: 入口点 ID 前缀，用于命名空间隔离</span>
+<span class="sd">        tags: 标签列表，用于分类和文档</span>
+<span class="sd">        name: Router 名称，用于标识和卸载</span>
+<span class="sd">        </span>
+<span class="sd">    Properties (绑定后可用):</span>
+<span class="sd">        ctx: 插件上下文 (PluginContext)</span>
+<span class="sd">        config: 配置管理器 (PluginConfig)</span>
+<span class="sd">        plugins: 插件间调用 (Plugins)</span>
+<span class="sd">        logger: 日志记录器</span>
+<span class="sd">        file_logger: 文件日志记录器 (如果主插件启用了)</span>
+<span class="sd">        store: KV 存储 (PluginStore)</span>
+<span class="sd">        db: 数据库 (PluginDatabase)</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; class MyRouter(PluginRouter):</span>
+<span class="sd">        ...     @plugin_entry(id=&quot;hello&quot;)</span>
+<span class="sd">        ...     def hello(self, name: str = &quot;World&quot;, **_):</span>
+<span class="sd">        ...         self.logger.info(f&quot;Hello {name}&quot;)</span>
+<span class="sd">        ...         return ok(data={&quot;message&quot;: f&quot;Hello, {name}!&quot;})</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; # 在主插件中动态加载</span>
+<span class="sd">        &gt;&gt;&gt; router = MyRouter()</span>
+<span class="sd">        &gt;&gt;&gt; self.include_router(router)</span>
+<span class="sd">        &gt;&gt;&gt; # 动态卸载</span>
+<span class="sd">        &gt;&gt;&gt; self.exclude_router(router)</span>
+<span class="sd">        &gt;&gt;&gt; # 或通过名称卸载</span>
+<span class="sd">        &gt;&gt;&gt; self.exclude_router(&quot;MyRouter&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="PluginRouter.__init__">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.__init__">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;初始化 Router</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            prefix: 入口点 ID 前缀，会添加到所有入口点 ID 前面</span>
+<span class="sd">            tags: 标签列表，用于分类</span>
+<span class="sd">            name: Router 名称，用于标识和卸载（默认使用类名）</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">tags</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;NekoPluginBase&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 记录注册的入口点 ID，用于卸载</span>
+        <span class="c1"># 初始化 Hook 执行器（来自 HookExecutorMixin）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__init_hook_executor__</span><span class="p">()</span></div>
+
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取当前前缀&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span>
+    
+    <span class="nd">@prefix</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;设置前缀（只能在绑定前设置）&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PluginRouterError</span><span class="o">.</span><span class="n">prefix_change_after_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="n">value</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取标签列表&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取 Router 名称&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_bound</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;检查是否已绑定到插件&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">entry_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取已注册的入口点 ID 列表&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="s2">&quot;NekoPluginBase&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;绑定到主插件（内部方法，由 include_router 调用）</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            plugin: 主插件实例</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            PluginRouterError: 如果 Router 已经绑定到其他插件</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span><span class="p">:</span>
+            <span class="n">plugin_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="k">else</span> <span class="s2">&quot;unknown&quot;</span>
+            <span class="k">raise</span> <span class="n">PluginRouterError</span><span class="o">.</span><span class="n">already_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="o">=</span> <span class="n">plugin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># 注入依赖</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inject_dependencies</span><span class="p">()</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_unbind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;解除与主插件的绑定（内部方法，由 exclude_router 调用）&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_bound</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;access properties&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;确保 Router 已绑定到插件</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            action: 当前尝试执行的操作，用于错误信息</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            PluginRouterError: 如果 Router 未绑定</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PluginRouterError</span><span class="o">.</span><span class="n">not_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+    
+    <span class="c1"># ========== 代理属性：访问主插件的功能 ==========</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ctx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginContext&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取插件上下文&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># type: ignore[return-value]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">ctx</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PluginConfig&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取配置管理器&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># type: ignore[return-value]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">config</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Plugins&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取插件间调用管理器&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># type: ignore[return-value]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">plugins</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取日志记录器</span>
+<span class="sd">        </span>
+<span class="sd">        优先返回 file_logger（如果主插件启用了），否则返回 ctx.logger。</span>
+<span class="sd">        未绑定时返回 None（防止 inspect.getmembers 扫描崩溃）。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># 优先使用 file_logger</span>
+        <span class="n">file_logger</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;file_logger&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file_logger</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">file_logger</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="s2">&quot;logger&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">file_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取文件日志记录器</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            文件日志记录器，如果主插件未启用或未绑定则返回 None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;file_logger&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">store</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;PluginStore&quot;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取 KV 存储</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            PluginStore 实例，如果未启用或未绑定则返回 None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">db</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;PluginDatabase&quot;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取数据库</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            PluginDatabase 实例，如果未启用或未绑定则返回 None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plugin_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取插件 ID&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;_plugin_id&quot;</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">main_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;NekoPluginBase&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取主插件实例</span>
+<span class="sd">        </span>
+<span class="sd">        用于访问主插件的自定义属性和方法。</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyRouter(PluginRouter):</span>
+<span class="sd">            ...     @plugin_entry(id=&quot;test&quot;)</span>
+<span class="sd">            ...     def test(self, **_):</span>
+<span class="sd">            ...         # 访问主插件的自定义属性</span>
+<span class="sd">            ...         counter = self.main_plugin.counter</span>
+<span class="sd">            ...         # 调用主插件的自定义方法</span>
+<span class="sd">            ...         self.main_plugin.custom_method()</span>
+<span class="sd">            ...         return ok(data={&quot;counter&quot;: counter})</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            主插件实例 (NekoPluginBase)</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            PluginRouterError: 如果 Router 未绑定到插件</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PluginRouterError</span><span class="o">.</span><span class="n">not_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="s2">&quot;access main_plugin&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span>
+    
+<div class="viewcode-block" id="PluginRouter.get_plugin_attr">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.get_plugin_attr">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_plugin_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">T</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;安全地获取主插件的属性</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: 属性名</span>
+<span class="sd">            default: 默认值（属性不存在时返回）</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            属性值或默认值</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; counter = self.get_plugin_attr(&quot;counter&quot;, 0)</span>
+<span class="sd">            &gt;&gt;&gt; cache = self.get_plugin_attr(&quot;_cache&quot;)  # 也可以访问私有属性</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_bound</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouter.has_plugin_attr">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.has_plugin_attr">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_plugin_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;检查主插件是否有某个属性</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: 属性名</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True 如果属性存在</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_bound</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+    
+    <span class="c1"># ========== 依赖注入 ==========</span>
+    
+    <span class="c1"># 子类可以覆盖这个列表，声明需要的依赖</span>
+    <span class="n">__requires__</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_inject_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;注入依赖（内部方法，由 _bind 调用）</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            PluginRouterError: 如果必需的依赖不存在</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">dep_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__requires__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_plugin_attr</span><span class="p">(</span><span class="n">dep_name</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin_attr</span><span class="p">(</span><span class="n">dep_name</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 检查 Router 自身是否有默认值</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_name</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="n">PluginRouterError</span><span class="o">.</span><span class="n">dependency_missing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">dep_name</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="PluginRouter.get_dependency">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.get_dependency">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_dependency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">T</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取依赖</span>
+<span class="sd">        </span>
+<span class="sd">        优先从 Router 自身获取，如果没有则从主插件获取。</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: 依赖名称</span>
+<span class="sd">            default: 默认值</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            依赖实例或默认值</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; http_client = self.get_dependency(&quot;http_client&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; cache = self.get_dependency(&quot;cache&quot;, default={})</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 先检查 Router 自身</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;_plugin&quot;</span><span class="p">,</span> <span class="s2">&quot;_bound&quot;</span><span class="p">,</span> <span class="s2">&quot;_prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;_tags&quot;</span><span class="p">,</span> <span class="s2">&quot;_name&quot;</span><span class="p">,</span> <span class="s2">&quot;_entry_ids&quot;</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">value</span>
+        <span class="c1"># 再检查主插件</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin_attr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
+
+    
+    <span class="c1"># ========== 便捷方法：代理常用操作 ==========</span>
+    
+<div class="viewcode-block" id="PluginRouter.push_message">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.push_message">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">push_message</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">message_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">binary_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">binary_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;推送消息到主进程</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            source: 消息来源标识</span>
+<span class="sd">            message_type: 消息类型 (&quot;text&quot; | &quot;url&quot; | &quot;binary&quot; | &quot;binary_url&quot;)</span>
+<span class="sd">            description: 消息描述</span>
+<span class="sd">            priority: 优先级 (0-10)</span>
+<span class="sd">            content: 文本内容或 URL</span>
+<span class="sd">            binary_data: 二进制数据</span>
+<span class="sd">            binary_url: 二进制文件 URL</span>
+<span class="sd">            metadata: 额外元数据</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_bound</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">push_message</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
+            <span class="n">message_type</span><span class="o">=</span><span class="n">message_type</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
+            <span class="n">binary_data</span><span class="o">=</span><span class="n">binary_data</span><span class="p">,</span>
+            <span class="n">binary_url</span><span class="o">=</span><span class="n">binary_url</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouter.report_status">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.report_status">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">report_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;上报插件状态</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            status: 状态字典</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_bound</span><span class="p">()</span>
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span>
+        <span class="k">assert</span> <span class="n">plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># for type checker</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="s2">&quot;report_status&quot;</span><span class="p">):</span>
+            <span class="n">plugin</span><span class="o">.</span><span class="n">report_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span></div>
+
+    
+    <span class="c1"># ========== HookExecutorMixin 抽象方法实现 ==========</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_hook_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取日志记录器（HookExecutorMixin 抽象方法实现）&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_hook_owner_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取所属对象名称（HookExecutorMixin 抽象方法实现）&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+    
+    <span class="c1"># ========== 入口点收集 ==========</span>
+    
+<div class="viewcode-block" id="PluginRouter.collect_entries">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.collect_entries">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">EventHandler</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;收集本 Router 中所有带装饰器的入口点</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            入口点字典，key 为入口点 ID（已添加前缀），value 为 EventHandler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">EventHandler</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="c1"># 跳过私有属性和特殊属性</span>
+            <span class="k">if</span> <span class="n">attr_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                <span class="k">continue</span>
+            
+            <span class="c1"># 检查是否有事件元数据</span>
+            <span class="n">meta</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EventMeta</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">EVENT_META_ATTR</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">meta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="c1"># 添加前缀到入口点 ID</span>
+            <span class="n">entry_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="si">}{</span><span class="n">meta</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="k">else</span> <span class="n">meta</span><span class="o">.</span><span class="n">id</span>
+            
+            <span class="c1"># 检查重复</span>
+            <span class="k">if</span> <span class="n">entry_id</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Duplicate entry id &#39;</span><span class="si">{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&#39; in router </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+            
+            <span class="c1"># 创建带前缀的新 meta（如果有前缀）</span>
+            <span class="n">base_metadata</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">if</span> <span class="n">meta</span><span class="o">.</span><span class="n">metadata</span> <span class="k">else</span> <span class="p">{}</span>
+            <span class="n">base_metadata</span><span class="p">[</span><span class="s2">&quot;_router&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="p">:</span>
+                <span class="n">base_metadata</span><span class="p">[</span><span class="s2">&quot;_original_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">id</span>
+            
+            <span class="n">prefixed_meta</span> <span class="o">=</span> <span class="n">EventMeta</span><span class="p">(</span>
+                <span class="n">event_type</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">event_type</span><span class="p">,</span>
+                <span class="nb">id</span><span class="o">=</span><span class="n">entry_id</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+                <span class="n">input_schema</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">input_schema</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span>
+                <span class="n">auto_start</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">auto_start</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">base_metadata</span><span class="p">,</span>
+            <span class="p">)</span>
+            
+            <span class="n">entries</span><span class="p">[</span><span class="n">entry_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">EventHandler</span><span class="p">(</span><span class="n">meta</span><span class="o">=</span><span class="n">prefixed_meta</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry_id</span><span class="p">)</span>  <span class="c1"># 记录入口点 ID</span>
+        
+        <span class="k">return</span> <span class="n">entries</span></div>
+
+    
+    <span class="c1"># ========== 动态 Entry 管理 ==========</span>
+    
+<div class="viewcode-block" id="PluginRouter.add_entry">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.add_entry">[文档]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_entry</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">entry_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">input_schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;action&quot;</span><span class="p">,</span>
+        <span class="n">auto_start</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;动态添加一个 entry 到 Router</span>
+<span class="sd">        </span>
+<span class="sd">        在运行时向 Router 添加一个新的 entry。如果 Router 已绑定到插件，</span>
+<span class="sd">        会自动通知主进程更新 entry 列表。</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            entry_id: entry 的唯一标识符（不包含前缀，会自动添加）</span>
+<span class="sd">            handler: 处理函数（async 或 sync）</span>
+<span class="sd">            name: 显示名称（默认使用 entry_id）</span>
+<span class="sd">            description: 描述信息</span>
+<span class="sd">            input_schema: 输入参数的 JSON Schema</span>
+<span class="sd">            kind: entry 类型（action/service/hook/custom）</span>
+<span class="sd">            auto_start: 是否自动启动</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True 如果添加成功</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; async def my_handler(self, arg1: str, **_):</span>
+<span class="sd">            ...     return ok(data={&quot;result&quot;: arg1})</span>
+<span class="sd">            &gt;&gt;&gt; await router.add_entry(&quot;my_entry&quot;, my_handler, name=&quot;My Entry&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 添加前缀</span>
+        <span class="n">full_entry_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="si">}{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="k">else</span> <span class="n">entry_id</span>
+        
+        <span class="c1"># 创建 EventMeta</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="n">EventMeta</span><span class="p">(</span>
+            <span class="n">event_type</span><span class="o">=</span><span class="s2">&quot;plugin_entry&quot;</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">full_entry_id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="ow">or</span> <span class="n">entry_id</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">input_schema</span><span class="o">=</span><span class="n">input_schema</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+            <span class="n">auto_start</span><span class="o">=</span><span class="n">auto_start</span><span class="p">,</span>
+            <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">dynamic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;_dynamic&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;_router&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="s2">&quot;_original_id&quot;</span><span class="p">:</span> <span class="n">entry_id</span><span class="p">,</span>
+                <span class="s2">&quot;_registered_at&quot;</span><span class="p">:</span> <span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># 给 handler 添加元数据属性</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">EVENT_META_ATTR</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+        
+        <span class="c1"># 动态添加到 Router 实例</span>
+        <span class="n">attr_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_dynamic_</span><span class="si">{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_entry_id</span><span class="p">)</span>
+        
+        <span class="c1"># 如果已绑定到插件，同步更新插件的 _router_entries</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">:</span>
+            <span class="n">event_handler</span> <span class="o">=</span> <span class="n">EventHandler</span><span class="p">(</span><span class="n">meta</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">_router_entries</span><span class="p">[</span><span class="n">full_entry_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">event_handler</span>
+            
+            <span class="c1"># 通知主进程</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;_notify_entry_update&quot;</span><span class="p">):</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">_notify_entry_update</span><span class="p">(</span><span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="n">full_entry_id</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dynamic entry &#39;</span><span class="si">{</span><span class="n">full_entry_id</span><span class="si">}</span><span class="s2">&#39; added to router </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouter.remove_entry">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.remove_entry">[文档]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;从 Router 移除一个动态 entry</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            entry_id: entry 的唯一标识符（不包含前缀）</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True 如果移除成功，False 如果 entry 不存在</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 添加前缀</span>
+        <span class="n">full_entry_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="si">}{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="k">else</span> <span class="n">entry_id</span>
+        
+        <span class="c1"># 检查是否存在</span>
+        <span class="k">if</span> <span class="n">full_entry_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entry &#39;</span><span class="si">{</span><span class="n">full_entry_id</span><span class="si">}</span><span class="s2">&#39; not found in router </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># 移除动态属性</span>
+        <span class="n">attr_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_dynamic_</span><span class="si">{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+            <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+        
+        <span class="c1"># 从 entry_ids 中移除</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entry_ids</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_entry_id</span><span class="p">)</span>
+        
+        <span class="c1"># 如果已绑定到插件，同步更新插件的 _router_entries</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">full_entry_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">_router_entries</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">_router_entries</span><span class="p">[</span><span class="n">full_entry_id</span><span class="p">]</span>
+            
+            <span class="c1"># 通知主进程</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="p">,</span> <span class="s2">&quot;_notify_entry_update&quot;</span><span class="p">):</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="n">_notify_entry_update</span><span class="p">(</span><span class="s2">&quot;unregister&quot;</span><span class="p">,</span> <span class="n">full_entry_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dynamic entry &#39;</span><span class="si">{</span><span class="n">full_entry_id</span><span class="si">}</span><span class="s2">&#39; removed from router </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouter.on_mount">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.on_mount">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Router 被挂载时的回调（子类可重写）</span>
+<span class="sd">        </span>
+<span class="sd">        在 include_router 成功后调用。</span>
+<span class="sd">        可用于初始化 Router 特定的资源。</span>
+<span class="sd">        </span>
+<span class="sd">        支持同步和异步两种方式::</span>
+<span class="sd">        </span>
+<span class="sd">            # 同步</span>
+<span class="sd">            def on_mount(self):</span>
+<span class="sd">                self.cache = {}</span>
+<span class="sd">            </span>
+<span class="sd">            # 异步</span>
+<span class="sd">            async def on_mount(self):</span>
+<span class="sd">                await self.init_database()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="PluginRouter.on_unmount">
+<a class="viewcode-back" href="../../../reference/sdk/router.html#plugin.sdk.router.PluginRouter.on_unmount">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_unmount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Router 被卸载时的回调（子类可重写）</span>
+<span class="sd">        </span>
+<span class="sd">        在 exclude_router 成功后调用。</span>
+<span class="sd">        可用于清理 Router 特定的资源。</span>
+<span class="sd">        </span>
+<span class="sd">        支持同步和异步两种方式::</span>
+<span class="sd">        </span>
+<span class="sd">            # 同步</span>
+<span class="sd">            def on_unmount(self):</span>
+<span class="sd">                self.cache.clear()</span>
+<span class="sd">            </span>
+<span class="sd">            # 异步</span>
+<span class="sd">            async def on_unmount(self):</span>
+<span class="sd">                await self.close_connections()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">bound_status</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;bound to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugin</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bound</span> <span class="k">else</span> <span class="s2">&quot;unbound&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> prefix=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="si">}</span><span class="s2">&#39; </span><span class="si">{</span><span class="n">bound_status</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2026, N.E.K.O Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="#" aria-label="N.E.K.O"><span>Built with Sphinx &amp; Furo</span></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=9becfed8"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);</script>
+    <script src="../../../_static/custom.js?v=b75771b5"></script>
+    </body>
+</html>

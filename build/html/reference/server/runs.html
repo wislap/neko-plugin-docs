@@ -1,0 +1,1251 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="核心服务" href="services.html"><link rel="prev" title="Protocol 接口" href="../types/protocols.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Run/Export 管理器 - N.E.K.O Plugin SDK</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #6C5CE7;
+  --color-brand-content: #6C5CE7;
+  --color-api-background: #F8F7FF;
+  --color-api-background-hover: #EDEAFF;
+  --color-highlight-on-target: #F0EDFF;
+  --color-admonition-title--note: #6C5CE7;
+  --color-admonition-title-background--note: #F0EDFF;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #A29BFE;
+  --color-brand-content: #A29BFE;
+  --color-api-background: #1E1B2E;
+  --color-api-background-hover: #2D2B45;
+  --color-highlight-on-target: #2D2B45;
+  --color-admonition-title--note: #A29BFE;
+  --color-admonition-title-background--note: #1E1B2E;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">N.E.K.O Plugin SDK</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">N.E.K.O Plugin SDK</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting-started/index.html">快速上手</a><input aria-label="Toggle navigation of 快速上手" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">环境准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/first-plugin.html">第一个插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/project-structure.html">项目结构</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guide/index.html">开发指南</a><input aria-label="Toggle navigation of 开发指南" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/decorators.html">装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/context.html">上下文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/config.html">配置系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/responses.html">响应格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/state.html">状态持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/hooks.html">Hook 系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/router.html">路由器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/plugins-call.html">跨插件调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/database.html">数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/store.html">键值存储</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../architecture/index.html">系统架构</a><input aria-label="Toggle navigation of 系统架构" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/bus/index.html">Bus 通信系统</a><input aria-label="Toggle navigation of Bus 通信系统" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/records.html">记录与过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/messages.html">消息 (Messages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/events.html">事件 (Events)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/lifecycle.html">生命周期 (Lifecycle)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/conversations.html">对话 (Conversations)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/memory.html">记忆 (Memory)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/bus-list.html">BusList 操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/bus/watchers.html">实时监听 (Watchers)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/runs/index.html">Run/Export 执行系统</a><input aria-label="Toggle navigation of Run/Export 执行系统" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-lifecycle.html">Run 状态机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-progress.html">进度上报</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/exports.html">Export 通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-api.html">HTTP &amp; WebSocket API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/runs/run-storage.html">存储协议</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/message-plane/index.html">Message Plane 消息平面</a><input aria-label="Toggle navigation of Message Plane 消息平面" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/protocol.html">RPC 协议</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/stores.html">TopicStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/transport.html">传输层</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/message-plane/bridge.html">PlaneBridge</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/adapter/index.html">Adapter 协议适配</a><input aria-label="Toggle navigation of Adapter 协议适配" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/modes.html">工作模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/gateway-core.html">Gateway Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/contracts.html">接口契约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/adapter/building-adapter.html">构建自定义 Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../architecture/internals/index.html">内部机制</a><input aria-label="Toggle navigation of 内部机制" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/ipc.html">进程间通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/worker.html">Worker 模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/call-chain.html">调用链追踪</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/registry.html">插件注册表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/host.html">Host 进程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../architecture/internals/state-machine.html">全局状态机</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">完整示例</a><input aria-label="Toggle navigation of 完整示例" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/hello-world.html">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/file-processor.html">文件处理插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/api-client.html">API 客户端插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/data-collector.html">数据采集插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/stateful-plugin.html">状态持久化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/router-plugin.html">路由器模块化插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/hook-plugin.html">Hook 中间件插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/bus-watcher.html">Bus 实时监听插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/run-progress.html">Run 进度上报插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/mcp-adapter.html">MCP Adapter 示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API 参考</a><input aria-label="Toggle navigation of API 参考" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../sdk/base.html">NekoPluginBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/decorators.html">装饰器 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/config.html">PluginConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/router.html">PluginRouter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/hooks.html">Hook 系统 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/state.html">状态持久化 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/database.html">PluginDatabase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/store.html">PluginStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/plugins.html">Plugins (跨插件调用)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/responses.html">响应格式 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/memory.html">MemoryClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/system-info.html">SystemInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/types.html">SDK 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/types.html">Bus 核心类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/records.html">BusRecord / BusFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/messages.html">MessageClient / MessageRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/events.html">EventClient / EventRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/lifecycle.html">LifecycleClient / LifecycleRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/conversations.html">ConversationClient / ConversationRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bus/watchers.html">BusListWatcher / BusListDelta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/base.html">AdapterBase / AdapterConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/gateway-core.html">AdapterGatewayCore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/gateway-models.html">Gateway 数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/contracts.html">六管线接口契约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../adapter/types.html">Adapter 类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/errors.html">ErrorCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/result.html">Ok / Err / Result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/exceptions.html">异常层级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/models.html">数据模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/events.html">事件类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types/protocols.html">Protocol 接口</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Run/Export 管理器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">核心服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routes.html">HTTP API 端点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">常见问题</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/reference/server/runs.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-plugin.server.runs.manager">
+<span id="run-export"></span><h1>Run/Export 管理器<a class="headerlink" href="#module-plugin.server.runs.manager" title="链接到此标题。">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunCancelRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">RunCancelRequest</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunCancelRequest"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunCancelRequest" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(位于 Pydantic Validation v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunCancelRequest.reason">
+<span class="sig-name descname"><span class="pre">reason</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunCancelRequest.reason" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunCancelRequest.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#plugin.server.runs.manager.RunCancelRequest.model_config" title="链接到此定义。">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunError">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">RunError</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunError"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunError" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(位于 Pydantic Validation v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunError.code">
+<span class="sig-name descname"><span class="pre">code</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunError.code" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunError.message" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunError.details">
+<span class="sig-name descname"><span class="pre">details</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunError.details" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunError.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#plugin.server.runs.manager.RunError.model_config" title="链接到此定义。">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">ExportItem</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportItem"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(位于 Pydantic Validation v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'populate_by_name':</span> <span class="pre">True,</span> <span class="pre">'validate_by_alias':</span> <span class="pre">True,</span> <span class="pre">'validate_by_name':</span> <span class="pre">True}</span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.model_config" title="链接到此定义。">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.export_item_id">
+<span class="sig-name descname"><span class="pre">export_item_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.export_item_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.run_id">
+<span class="sig-name descname"><span class="pre">run_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.run_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ExportType</span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.type" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.category">
+<span class="sig-name descname"><span class="pre">category</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ExportCategory</span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.category" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.created_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.label">
+<span class="sig-name descname"><span class="pre">label</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.label" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.description" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.text">
+<span class="sig-name descname"><span class="pre">text</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.text" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.json_data">
+<span class="sig-name descname"><span class="pre">json_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.json_data" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.url">
+<span class="sig-name descname"><span class="pre">url</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.url" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.binary_url">
+<span class="sig-name descname"><span class="pre">binary_url</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.binary_url" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.binary">
+<span class="sig-name descname"><span class="pre">binary</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.binary" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.mime">
+<span class="sig-name descname"><span class="pre">mime</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.mime" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportItem.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportItem.metadata" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportListResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">ExportListResponse</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportListResponse"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportListResponse" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(位于 Pydantic Validation v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportListResponse.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><span class="pre">ExportItem</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportListResponse.items" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportListResponse.next_after">
+<span class="sig-name descname"><span class="pre">next_after</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.ExportListResponse.next_after" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportListResponse.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#plugin.server.runs.manager.ExportListResponse.model_config" title="链接到此定义。">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">RunRecord</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunRecord"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunRecord" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(位于 Pydantic Validation v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.run_id">
+<span class="sig-name descname"><span class="pre">run_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.run_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.plugin_id">
+<span class="sig-name descname"><span class="pre">plugin_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.plugin_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.entry_id">
+<span class="sig-name descname"><span class="pre">entry_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.entry_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">RunStatus</span></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.status" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.created_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.updated_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.task_id">
+<span class="sig-name descname"><span class="pre">task_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.task_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.trace_id">
+<span class="sig-name descname"><span class="pre">trace_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.trace_id" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.idempotency_key">
+<span class="sig-name descname"><span class="pre">idempotency_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.idempotency_key" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.started_at">
+<span class="sig-name descname"><span class="pre">started_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.started_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.finished_at">
+<span class="sig-name descname"><span class="pre">finished_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.finished_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.progress">
+<span class="sig-name descname"><span class="pre">progress</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.progress" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.stage">
+<span class="sig-name descname"><span class="pre">stage</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.stage" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.message">
+<span class="sig-name descname"><span class="pre">message</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.message" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.step" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.step_total">
+<span class="sig-name descname"><span class="pre">step_total</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.step_total" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.eta_seconds">
+<span class="sig-name descname"><span class="pre">eta_seconds</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.eta_seconds" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.metrics">
+<span class="sig-name descname"><span class="pre">metrics</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.metrics" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.cancel_requested">
+<span class="sig-name descname"><span class="pre">cancel_requested</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.cancel_requested" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.cancel_reason">
+<span class="sig-name descname"><span class="pre">cancel_reason</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.cancel_reason" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.cancel_requested_at">
+<span class="sig-name descname"><span class="pre">cancel_requested_at</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.cancel_requested_at" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#plugin.server.runs.manager.RunError" title="plugin.server.runs.manager.RunError"><span class="pre">RunError</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.error" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.result_refs">
+<span class="sig-name descname"><span class="pre">result_refs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.result_refs" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunRecord.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#plugin.server.runs.manager.RunRecord.model_config" title="链接到此定义。">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">ExportStore</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportStore"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportStore" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportStore.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportStore.append"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportStore.append" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><em>ExportItem</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportStore.list_for_run">
+<span class="sig-name descname"><span class="pre">list_for_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportStore.list_for_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportStore.list_for_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>after</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>category</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(位于 Python v3.14)"><em>Literal</em></a><em>[</em><em>'system'</em><em>, </em><em>'user'</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(位于 Python v3.14)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><em>ExportItem</em></a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a> | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.ExportStore.remove_for_run">
+<span class="sig-name descname"><span class="pre">remove_for_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#ExportStore.remove_for_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.ExportStore.remove_for_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">RunStore</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunStore"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunStore" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunStore.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunStore.create"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunStore.create" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rec</strong> (<a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunStore.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunStore.get"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunStore.get" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunStore.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">patch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunStore.update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunStore.update" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>patch</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.RunStore.commit_terminal">
+<span class="sig-name descname"><span class="pre">commit_terminal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_refs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#RunStore.commit_terminal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.RunStore.commit_terminal" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>status</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(位于 Python v3.14)"><em>Literal</em></a><em>[</em><em>'queued'</em><em>, </em><em>'running'</em><em>, </em><em>'succeeded'</em><em>, </em><em>'failed'</em><em>, </em><em>'canceled'</em><em>, </em><em>'timeout'</em><em>, </em><em>'cancel_requested'</em><em>]</em>)</p></li>
+<li><p><strong>error</strong> (<a class="reference internal" href="#plugin.server.runs.manager.RunError" title="plugin.server.runs.manager.RunError"><em>RunError</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>result_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryExportStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">InMemoryExportStore</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryExportStore"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryExportStore" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryExportStore.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryExportStore.append"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryExportStore.append" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><em>ExportItem</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryExportStore.list_for_run">
+<span class="sig-name descname"><span class="pre">list_for_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryExportStore.list_for_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryExportStore.list_for_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>after</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>category</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(位于 Python v3.14)"><em>Literal</em></a><em>[</em><em>'system'</em><em>, </em><em>'user'</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(位于 Python v3.14)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><em>ExportItem</em></a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)">str</a> | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryExportStore.remove_for_run">
+<span class="sig-name descname"><span class="pre">remove_for_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryExportStore.remove_for_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryExportStore.remove_for_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InvalidRunTransition">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">InvalidRunTransition</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InvalidRunTransition"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InvalidRunTransition" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<p>Raised when an illegal Run status transition is attempted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.validate_run_transition">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">validate_run_transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#validate_run_transition"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.validate_run_transition" title="链接到此定义。">¶</a></dt>
+<dd><p>Raise InvalidRunTransition if <em>current</em> → <em>target</em> is not a legal transition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">InMemoryRunStore</span></span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore.create"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore.create" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rec</strong> (<a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore.get"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore.get" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">patch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore.update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore.update" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>patch</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore.list_runs">
+<span class="sig-name descname"><span class="pre">list_runs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore.list_runs"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore.list_runs" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.InMemoryRunStore.commit_terminal">
+<span class="sig-name descname"><span class="pre">commit_terminal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_refs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#InMemoryRunStore.commit_terminal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.InMemoryRunStore.commit_terminal" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>status</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(位于 Python v3.14)"><em>Literal</em></a><em>[</em><em>'queued'</em><em>, </em><em>'running'</em><em>, </em><em>'succeeded'</em><em>, </em><em>'failed'</em><em>, </em><em>'canceled'</em><em>, </em><em>'timeout'</em><em>, </em><em>'cancel_requested'</em><em>]</em>)</p></li>
+<li><p><strong>error</strong> (<a class="reference internal" href="#plugin.server.runs.manager.RunError" title="plugin.server.runs.manager.RunError"><em>RunError</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>result_refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.set_run_store">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">set_run_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#set_run_store"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.set_run_store" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>store</strong> (<a class="reference internal" href="#plugin.server.runs.manager.RunStore" title="plugin.server.runs.manager.RunStore"><em>RunStore</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.set_export_store">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">set_export_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#set_export_store"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.set_export_store" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>store</strong> (<a class="reference internal" href="#plugin.server.runs.manager.ExportStore" title="plugin.server.runs.manager.ExportStore"><em>ExportStore</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.get_run">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">get_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#get_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.get_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.list_runs">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">list_runs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#list_runs"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.list_runs" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(位于 Python v3.14)"><em>List</em></a>[<a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.list_export_for_run">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">list_export_for_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#list_export_for_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.list_export_for_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>after</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>category</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(位于 Python v3.14)"><em>Literal</em></a><em>[</em><em>'system'</em><em>, </em><em>'user'</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.ExportListResponse" title="plugin.server.runs.manager.ExportListResponse"><em>ExportListResponse</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.append_export_item">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">append_export_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#append_export_item"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.append_export_item" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference internal" href="#plugin.server.runs.manager.ExportItem" title="plugin.server.runs.manager.ExportItem"><em>ExportItem</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.update_run_from_plugin">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">update_run_from_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_plugin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#update_run_from_plugin"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.update_run_from_plugin" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_plugin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>patch</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(位于 Python v3.14)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(位于 Python v3.14)"><em>Any</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(位于 Python v3.14)"><em>Tuple</em></a>[<a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None, <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)">bool</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.cancel_run">
+<span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">cancel_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#cancel_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.cancel_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>reason</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#plugin.server.runs.manager.RunRecord" title="plugin.server.runs.manager.RunRecord"><em>RunRecord</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.shutdown_runs">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">shutdown_runs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#shutdown_runs"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.shutdown_runs" title="链接到此定义。">¶</a></dt>
+<dd><p>Cancel and await all active run tasks.</p>
+<p>Should be called during server shutdown to prevent dangling coroutines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(位于 Python v3.14)"><em>float</em></a>)</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin.server.runs.manager.create_run">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.server.runs.manager.</span></span><span class="sig-name descname"><span class="pre">create_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="仅关键字参数分隔符 (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_host</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/server/runs/manager.html#create_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.server.runs.manager.create_run" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req</strong> (<a class="reference internal" href="../types/models.html#plugin._types.models.RunCreateRequest" title="plugin._types.models.RunCreateRequest"><em>RunCreateRequest</em></a>)</p></li>
+<li><p><strong>client_host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../types/models.html#plugin._types.models.RunCreateResponse" title="plugin._types.models.RunCreateResponse"><em>RunCreateResponse</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="services.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">核心服务</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../types/protocols.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Protocol 接口</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2026, N.E.K.O Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="#" aria-label="N.E.K.O"><span>Built with Sphinx &amp; Furo</span></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Run/Export 管理器</a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunCancelRequest"><code class="docutils literal notranslate"><span class="pre">RunCancelRequest</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunCancelRequest.reason"><code class="docutils literal notranslate"><span class="pre">RunCancelRequest.reason</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunCancelRequest.model_config"><code class="docutils literal notranslate"><span class="pre">RunCancelRequest.model_config</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunError"><code class="docutils literal notranslate"><span class="pre">RunError</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunError.code"><code class="docutils literal notranslate"><span class="pre">RunError.code</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunError.message"><code class="docutils literal notranslate"><span class="pre">RunError.message</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunError.details"><code class="docutils literal notranslate"><span class="pre">RunError.details</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunError.model_config"><code class="docutils literal notranslate"><span class="pre">RunError.model_config</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem"><code class="docutils literal notranslate"><span class="pre">ExportItem</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.model_config"><code class="docutils literal notranslate"><span class="pre">ExportItem.model_config</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.export_item_id"><code class="docutils literal notranslate"><span class="pre">ExportItem.export_item_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.run_id"><code class="docutils literal notranslate"><span class="pre">ExportItem.run_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.type"><code class="docutils literal notranslate"><span class="pre">ExportItem.type</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.category"><code class="docutils literal notranslate"><span class="pre">ExportItem.category</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.created_at"><code class="docutils literal notranslate"><span class="pre">ExportItem.created_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.label"><code class="docutils literal notranslate"><span class="pre">ExportItem.label</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.description"><code class="docutils literal notranslate"><span class="pre">ExportItem.description</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.text"><code class="docutils literal notranslate"><span class="pre">ExportItem.text</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.json_data"><code class="docutils literal notranslate"><span class="pre">ExportItem.json_data</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.url"><code class="docutils literal notranslate"><span class="pre">ExportItem.url</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.binary_url"><code class="docutils literal notranslate"><span class="pre">ExportItem.binary_url</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.binary"><code class="docutils literal notranslate"><span class="pre">ExportItem.binary</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.mime"><code class="docutils literal notranslate"><span class="pre">ExportItem.mime</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportItem.metadata"><code class="docutils literal notranslate"><span class="pre">ExportItem.metadata</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportListResponse"><code class="docutils literal notranslate"><span class="pre">ExportListResponse</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportListResponse.items"><code class="docutils literal notranslate"><span class="pre">ExportListResponse.items</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportListResponse.next_after"><code class="docutils literal notranslate"><span class="pre">ExportListResponse.next_after</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportListResponse.model_config"><code class="docutils literal notranslate"><span class="pre">ExportListResponse.model_config</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord"><code class="docutils literal notranslate"><span class="pre">RunRecord</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.run_id"><code class="docutils literal notranslate"><span class="pre">RunRecord.run_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.plugin_id"><code class="docutils literal notranslate"><span class="pre">RunRecord.plugin_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.entry_id"><code class="docutils literal notranslate"><span class="pre">RunRecord.entry_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.status"><code class="docutils literal notranslate"><span class="pre">RunRecord.status</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.created_at"><code class="docutils literal notranslate"><span class="pre">RunRecord.created_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.updated_at"><code class="docutils literal notranslate"><span class="pre">RunRecord.updated_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.task_id"><code class="docutils literal notranslate"><span class="pre">RunRecord.task_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.trace_id"><code class="docutils literal notranslate"><span class="pre">RunRecord.trace_id</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.idempotency_key"><code class="docutils literal notranslate"><span class="pre">RunRecord.idempotency_key</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.started_at"><code class="docutils literal notranslate"><span class="pre">RunRecord.started_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.finished_at"><code class="docutils literal notranslate"><span class="pre">RunRecord.finished_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.progress"><code class="docutils literal notranslate"><span class="pre">RunRecord.progress</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.stage"><code class="docutils literal notranslate"><span class="pre">RunRecord.stage</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.message"><code class="docutils literal notranslate"><span class="pre">RunRecord.message</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.step"><code class="docutils literal notranslate"><span class="pre">RunRecord.step</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.step_total"><code class="docutils literal notranslate"><span class="pre">RunRecord.step_total</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.eta_seconds"><code class="docutils literal notranslate"><span class="pre">RunRecord.eta_seconds</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.metrics"><code class="docutils literal notranslate"><span class="pre">RunRecord.metrics</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.cancel_requested"><code class="docutils literal notranslate"><span class="pre">RunRecord.cancel_requested</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.cancel_reason"><code class="docutils literal notranslate"><span class="pre">RunRecord.cancel_reason</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.cancel_requested_at"><code class="docutils literal notranslate"><span class="pre">RunRecord.cancel_requested_at</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.error"><code class="docutils literal notranslate"><span class="pre">RunRecord.error</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.result_refs"><code class="docutils literal notranslate"><span class="pre">RunRecord.result_refs</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunRecord.model_config"><code class="docutils literal notranslate"><span class="pre">RunRecord.model_config</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportStore"><code class="docutils literal notranslate"><span class="pre">ExportStore</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportStore.append"><code class="docutils literal notranslate"><span class="pre">ExportStore.append()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportStore.list_for_run"><code class="docutils literal notranslate"><span class="pre">ExportStore.list_for_run()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.ExportStore.remove_for_run"><code class="docutils literal notranslate"><span class="pre">ExportStore.remove_for_run()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunStore"><code class="docutils literal notranslate"><span class="pre">RunStore</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunStore.create"><code class="docutils literal notranslate"><span class="pre">RunStore.create()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunStore.get"><code class="docutils literal notranslate"><span class="pre">RunStore.get()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunStore.update"><code class="docutils literal notranslate"><span class="pre">RunStore.update()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.RunStore.commit_terminal"><code class="docutils literal notranslate"><span class="pre">RunStore.commit_terminal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryExportStore"><code class="docutils literal notranslate"><span class="pre">InMemoryExportStore</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryExportStore.append"><code class="docutils literal notranslate"><span class="pre">InMemoryExportStore.append()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryExportStore.list_for_run"><code class="docutils literal notranslate"><span class="pre">InMemoryExportStore.list_for_run()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryExportStore.remove_for_run"><code class="docutils literal notranslate"><span class="pre">InMemoryExportStore.remove_for_run()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InvalidRunTransition"><code class="docutils literal notranslate"><span class="pre">InvalidRunTransition</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.validate_run_transition"><code class="docutils literal notranslate"><span class="pre">validate_run_transition()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore</span></code></a><ul>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore.create"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore.create()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore.get"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore.get()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore.update"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore.update()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore.list_runs"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore.list_runs()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.InMemoryRunStore.commit_terminal"><code class="docutils literal notranslate"><span class="pre">InMemoryRunStore.commit_terminal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.set_run_store"><code class="docutils literal notranslate"><span class="pre">set_run_store()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.set_export_store"><code class="docutils literal notranslate"><span class="pre">set_export_store()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.get_run"><code class="docutils literal notranslate"><span class="pre">get_run()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.list_runs"><code class="docutils literal notranslate"><span class="pre">list_runs()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.list_export_for_run"><code class="docutils literal notranslate"><span class="pre">list_export_for_run()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.append_export_item"><code class="docutils literal notranslate"><span class="pre">append_export_item()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.update_run_from_plugin"><code class="docutils literal notranslate"><span class="pre">update_run_from_plugin()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.cancel_run"><code class="docutils literal notranslate"><span class="pre">cancel_run()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.shutdown_runs"><code class="docutils literal notranslate"><span class="pre">shutdown_runs()</span></code></a></li>
+<li><a class="reference internal" href="#plugin.server.runs.manager.create_run"><code class="docutils literal notranslate"><span class="pre">create_run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=9becfed8"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/custom.js?v=b75771b5"></script>
+    </body>
+</html>
