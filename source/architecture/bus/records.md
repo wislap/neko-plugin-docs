@@ -7,8 +7,8 @@
 ```python
 @dataclass(frozen=True, slots=True)
 class BusRecord:
-    kind: str                       # "message" | "event" | "lifecycle" | "conversation"
-    type: Optional[str]             # 子类型（如 message_type, event type）
+    kind: str                       # "message" | "event" | "lifecycle" | "conversation" | "memory"
+    type: str                       # 子类型（如 message_type, event type）
     timestamp: Optional[float]      # Unix 时间戳
     plugin_id: Optional[str]        # 来源插件 ID
     source: Optional[str]           # 来源标识
@@ -26,16 +26,13 @@ class BusRecord:
 
 ### 去重标识
 
-每种 Record 有不同的去重 key：
+去重 key 的计算顺序为：
 
-| Record 类型 | 去重字段 |
-|-------------|---------|
-| `MessageRecord` | `message_id` |
-| `EventRecord` | `event_id` |
-| `LifecycleRecord` | `lifecycle_id` |
-| `ConversationRecord` | `conversation_id` |
+1. Record 属性中的 `message_id` / `event_id` / `lifecycle_id` / `trace_id`
+2. `raw` 字典中的同名字段
+3. `dump()` 指纹
 
-如果没有专属 ID，回退到 `trace_id`，再回退到 `dump()` 指纹。
+说明：`ConversationRecord` / `MemoryRecord` 默认不参与专属 ID 去重，通常走 `dump()` 指纹分支。
 
 ## BusFilter 过滤器
 

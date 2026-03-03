@@ -9,7 +9,7 @@
 ```python
 from plugin.sdk import MemoryClient
 
-# 通过 ctx.bus
+# 通过 ctx.bus（推荐）
 memory = self.ctx.bus.memory
 
 # 或直接创建
@@ -19,19 +19,30 @@ memory = MemoryClient(self.ctx)
 ## 基本操作
 
 ```python
-# 获取记忆
-memories = memory.get(max_count=50)
+# 从指定 bucket 获取记忆
+memories = memory.get(bucket_id="user:alice", limit=50)
 
-# 按插件过滤
-memories = memory.get(plugin_id="memory_plugin")
+# 调整超时
+memories = memory.get(bucket_id="session:chat_001", limit=20, timeout=3.0)
+
+# 异步版本
+memories = await memory.get_async(bucket_id="user:alice", limit=50)
 ```
+
+### 参数
+
+| 参数 | 类型 | 默认 | 说明 |
+|------|------|------|------|
+| `bucket_id` | `str` | - | 记忆桶 ID（必填） |
+| `limit` | `int` | `20` | 最大返回数量 |
+| `timeout` | `float` | `5.0` | 超时时间 |
 
 ## MemoryRecord
 
 ```python
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class MemoryRecord(BusRecord):
-    memory_id: Optional[str] = None
+    bucket_id: str = "default"
 ```
 
 ## 典型用例

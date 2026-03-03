@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="Hook 系统" href="hooks.html"><link rel="prev" title="响应格式" href="responses.html">
+<meta property="og:title" content="状态持久化" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/guide/state.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="N.E.K.O 支持自动保存和恢复插件状态（freeze/unfreeze 机制），让插件在重启后恢复到之前的状态。 核心概念: freezable: 声明需要持久化的属性名列表： 只有在__freezable__ 中声明的属性才会被保存和恢复。 persist_mode: 控制保存时机：,, 模式, 说明,,,&quot;auto&quot;, 每次 entry 执行后自动保存,,&quo..." />
+<meta name="description" content="N.E.K.O 支持自动保存和恢复插件状态（freeze/unfreeze 机制），让插件在重启后恢复到之前的状态。 核心概念: freezable: 声明需要持久化的属性名列表： 只有在__freezable__ 中声明的属性才会被保存和恢复。 persist_mode: 控制保存时机：,, 模式, 说明,,,&quot;auto&quot;, 每次 entry 执行后自动保存,,&quo..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-02-28T21:30:06+08:00" /><link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="Hook 系统" href="hooks.html"><link rel="prev" title="响应格式" href="responses.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/guide/state.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>状态持久化 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=57c836ec" />
@@ -609,7 +619,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-02-28 21:30</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -666,6 +677,7 @@
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

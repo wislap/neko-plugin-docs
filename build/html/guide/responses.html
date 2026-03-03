@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="状态持久化" href="state.html"><link rel="prev" title="配置系统" href="config.html">
+<meta property="og:title" content="响应格式" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/guide/responses.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="N.E.K.O 插件系统使用统一的响应格式。SDK 提供 ok() 和 fail() 辅助函数。 ok() — 成功响应: 返回格式： fail() — 失败响应: 返回格式： 直接返回字典: 插件入口也可以直接返回字典，系统会自动用 ok() 包装： ErrorCode: ErrorCode 是与 HTTP 状态码对齐的整数枚举：,,, 常量, 值, 说明,,, SUCCESS, 0, 成..." />
+<meta name="description" content="N.E.K.O 插件系统使用统一的响应格式。SDK 提供 ok() 和 fail() 辅助函数。 ok() — 成功响应: 返回格式： fail() — 失败响应: 返回格式： 直接返回字典: 插件入口也可以直接返回字典，系统会自动用 ok() 包装： ErrorCode: ErrorCode 是与 HTTP 状态码对齐的整数枚举：,,, 常量, 值, 说明,,, SUCCESS, 0, 成..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-02-28T21:30:06+08:00" /><link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="状态持久化" href="state.html"><link rel="prev" title="配置系统" href="config.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/guide/responses.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>响应格式 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=57c836ec" />
@@ -555,7 +565,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-02-28 21:30</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -602,6 +613,7 @@
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

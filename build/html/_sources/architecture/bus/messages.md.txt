@@ -62,13 +62,16 @@ text_msgs = msgs.filter(type="text")
 urgent = msgs.filter(priority_min=8)
 
 # 排序：按时间倒序
-recent = msgs.sort("timestamp", reverse=True)
+recent = msgs.sort(by="timestamp", reverse=True)
 
 # 获取第一条
-first = msgs.first()
+first = msgs[0] if len(msgs) > 0 else None
 
-# 转为列表
-records = msgs.to_list()
+# 转为 record 列表
+records = msgs.dump_records()
+
+# 转为可序列化 dict 列表
+payloads = msgs.dump()
 
 # 统计
 count = len(msgs)

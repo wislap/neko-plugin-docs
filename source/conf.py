@@ -2,6 +2,7 @@
 
 import os
 import sys
+import logging
 
 # Add project root to sys.path so autodoc can find modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..")))
@@ -11,6 +12,10 @@ project = "N.E.K.O Plugin SDK"
 copyright = "2024-2026, N.E.K.O Team"
 author = "N.E.K.O Team"
 release = "0.1.0"
+_baseurl = os.getenv("NEKO_PLUGIN_DOCS_BASE_URL", "http://127.0.0.1:8000/").strip()
+if _baseurl and not _baseurl.endswith("/"):
+    _baseurl = f"{_baseurl}/"
+html_baseurl = _baseurl or "http://127.0.0.1:8000/"
 
 # -- General configuration -------------------------------------------------
 extensions = [
@@ -30,9 +35,20 @@ extensions = [
     "sphinx_design",
     "sphinx_togglebutton",
     "sphinxcontrib.mermaid",
+    "sphinx_inline_tabs",
+    "sphinx_codeautolink",
 
     # Pydantic model documentation
     "sphinxcontrib.autodoc_pydantic",
+
+    # Publishing / discoverability
+    "sphinxext.opengraph",
+    "sphinx_sitemap",
+    "notfound.extension",
+    "sphinx_last_updated_by_git",
+
+    # QA
+    "sphinxcontrib.spelling",
 ]
 
 # MyST-Parser settings (Markdown support)
@@ -149,13 +165,46 @@ html_theme_options = {
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_js_files = ["custom.js"]
+html_last_updated_fmt = "%Y-%m-%d %H:%M"
+
+# -- OpenGraph --------------------------------------------------------------
+ogp_site_url = html_baseurl
+ogp_site_name = "N.E.K.O Plugin SDK"
+ogp_description_length = 200
+ogp_enable_meta_description = True
+ogp_use_first_image = True
+
+# -- Sitemap ----------------------------------------------------------------
+sitemap_url_scheme = "{link}"
+
+# -- 404 page ---------------------------------------------------------------
+notfound_urls_prefix = "/"
+notfound_context = {
+    "title": "页面未找到",
+    "body": (
+        "<h1>页面未找到</h1>"
+        "<p>你访问的文档页面不存在或链接已变更。</p>"
+        '<p><a href="/">返回文档首页</a></p>'
+    ),
+}
+
+# -- Spelling ---------------------------------------------------------------
+spelling_lang = "en_US"
+spelling_word_list_filename = ["spelling_wordlist.txt"]
+spelling_show_suggestions = True
+spelling_warning = False
+
+# -- Last updated by git ----------------------------------------------------
+git_last_updated_timezone = "Asia/Shanghai"
+git_last_updated_date_format = "%Y-%m-%d %H:%M"
+
+# -- Code autolink ----------------------------------------------------------
+codeautolink_autodoc_inject = True
 
 # -- Suppress warnings --------------------------------------------------------
 suppress_warnings = [
     "ref.python",       # ambiguous cross-references (PluginContextProtocol etc.)
 ]
-
-import logging
 
 class _DuplicateFilter(logging.Filter):
     """Filter out 'duplicate object description' and docutils inline markup warnings."""

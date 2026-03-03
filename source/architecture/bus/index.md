@@ -51,8 +51,8 @@ graph LR
 ```python
 @dataclass(frozen=True, slots=True)
 class BusRecord:
-    kind: str                       # "message" | "event" | "lifecycle" | "conversation"
-    type: Optional[str]             # 子类型
+    kind: str                       # "message" | "event" | "lifecycle" | "conversation" | "memory"
+    type: str                       # 子类型
     timestamp: Optional[float]      # 时间戳
     plugin_id: Optional[str]        # 来源插件
     source: Optional[str]           # 来源标识
@@ -75,6 +75,12 @@ events = self.ctx.bus.events.get(plugin_id="my_plugin", max_count=20)
 
 # 获取生命周期记录
 lifecycle = self.ctx.bus.lifecycle.get(max_count=10)
+
+# 获取指定 conversation_id 的对话
+conversations = self.ctx.bus.conversations.get(conversation_id="conv_123", max_count=20)
+
+# 获取指定 bucket 的记忆
+memories = self.ctx.bus.memory.get(bucket_id="user:alice", limit=20)
 ```
 
 ## BusList 操作
@@ -89,15 +95,19 @@ high_priority = msgs.filter(priority_min=7)
 from_plugin = msgs.filter(plugin_id="my_plugin")
 
 # 排序
-by_time = msgs.sort("timestamp", reverse=True)
+by_time = msgs.sort(by="timestamp", reverse=True)
 
-# 去重
-unique = msgs.unique()
+# 截断
+top20 = by_time.limit(20)
 
 # 集合运算
 combined = msgs1.merge(msgs2)
 common = msgs1.intersect(msgs2)
 diff = msgs1.difference(msgs2)
+
+# 导出结果
+records = msgs.dump_records()   # List[MessageRecord]
+payloads = msgs.dump()          # List[Dict[str, Any]]
 ```
 
 ```{toctree}

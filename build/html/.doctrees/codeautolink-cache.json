@@ -1,0 +1,38 @@
+{
+  "getting-started/first-plugin": [
+    {
+      "source": "from plugin.sdk import NekoPluginBase, neko_plugin, plugin_entry, worker, ok\n\n\n@neko_plugin\nclass HelloWorldPlugin(NekoPluginBase):\n    def __init__(self, ctx):\n        super().__init__(ctx)\n        self.logger.info(\"HelloWorldPlugin initialized\")\n\n    # \u4e0d\u4f20 id \u65f6\uff0c\u9ed8\u8ba4\u4f7f\u7528\u51fd\u6570\u540d greet \u4f5c\u4e3a entry_id\n    @plugin_entry(name=\"Greet\", description=\"Return greeting message\")\n    @worker(timeout=10.0)\n    def greet(self, name: str = \"World\", **_):\n        self.logger.info(\"greet called, name={}\", name)\n        return ok(data={\"message\": f\"Hello, {name}!\"})\n",
+      "names": [
+        {
+          "import_components": [
+            "super"
+          ],
+          "code_str": "super",
+          "lineno": 7,
+          "end_lineno": 7,
+          "context": "none",
+          "resolved_location": "super"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "str"
+        }
+      ],
+      "example": {
+        "document": "getting-started/first-plugin",
+        "ref_id": "id5",
+        "headings": [
+          "\u521b\u5efa\u7b2c\u4e00\u4e2a\u63d2\u4ef6",
+          "3. \u521b\u5efa\u63d2\u4ef6\u4ee3\u7801"
+        ]
+      },
+      "doc_lineno": 76
+    }
+  ]
+}

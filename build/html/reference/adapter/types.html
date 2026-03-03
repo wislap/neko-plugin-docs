@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="ErrorCode" href="../types/errors.html"><link rel="prev" title="六管线接口契约" href="contracts.html">
+<meta property="og:title" content="Adapter 类型" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/reference/adapter/types.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="Adapter 类型定义 提供强类型的消息和响应结构，支持 IDE 自动补全。" />
+<meta name="description" content="Adapter 类型定义 提供强类型的消息和响应结构，支持 IDE 自动补全。" />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-03-03T18:47:16+08:00" /><link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="ErrorCode" href="../types/errors.html"><link rel="prev" title="六管线接口契约" href="contracts.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/reference/adapter/types.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>Adapter 类型 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
@@ -378,6 +388,15 @@
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.sdk.adapter.types.</span></span><span class="sig-name descname"><span class="pre">Protocol</span></span><a class="reference internal" href="../../_modules/plugin/sdk/adapter/types.html#Protocol"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.adapter.types.Protocol" title="链接到此定义。">¶</a></dt>
 <dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
 <p>支持的协议类型</p>
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin.sdk.adapter.types.Protocol" title="plugin.sdk.adapter.types.Protocol"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.adapter.types.Protocol</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../architecture/adapter/building-adapter.html#transportadapter">构建自定义 Adapter / 完整示例：HTTP Adapter / 实现 TransportAdapter</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../examples/mcp-adapter.html#id2">MCP Adapter 示例 / 简化实现</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="plugin.sdk.adapter.types.Protocol.MCP">
 <span class="sig-name descname"><span class="pre">MCP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mcp'</span></span><a class="headerlink" href="#plugin.sdk.adapter.types.Protocol.MCP" title="链接到此定义。">¶</a></dt>
@@ -900,7 +919,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-03-03 18:47</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -1015,6 +1035,7 @@
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

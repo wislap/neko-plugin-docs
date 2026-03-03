@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="项目结构" href="project-structure.html"><link rel="prev" title="环境准备" href="installation.html">
+<meta property="og:title" content="创建第一个插件" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/getting-started/first-plugin.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="目标：从 0 到 1 创建一个 hello_world 插件，并在插件管理界面中成功触发。 你将完成什么: 创建插件目录与 plugin.toml, 编写一个最小可运行的插件类, 启动插件服务器并在 UI 里触发入口点, 通过/runs API 进行一次可脚本化调用（可选）. 0. 前置条件: 已完成环境准备： installation.md, 你当前位于项目根目录： N.E.K.O/, P..." />
+<meta name="description" content="目标：从 0 到 1 创建一个 hello_world 插件，并在插件管理界面中成功触发。 你将完成什么: 创建插件目录与 plugin.toml, 编写一个最小可运行的插件类, 启动插件服务器并在 UI 里触发入口点, 通过/runs API 进行一次可脚本化调用（可选）. 0. 前置条件: 已完成环境准备： installation.md, 你当前位于项目根目录： N.E.K.O/, P..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>第一个插件 - N.E.K.O Plugin SDK</title>
+    <meta property="article:modified_time" content="2026-02-28T21:30:06+08:00" /><link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="项目结构" href="project-structure.html"><link rel="prev" title="环境准备" href="installation.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/getting-started/first-plugin.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
+        <title>创建第一个插件 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=57c836ec" />
@@ -219,7 +229,7 @@
   <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">快速上手</a><input aria-label="Toggle navigation of 快速上手" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installation.html">环境准备</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">第一个插件</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">创建第一个插件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project-structure.html">项目结构</a></li>
 </ul>
 </li>
@@ -370,199 +380,234 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="id1">
-<h1>第一个插件<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
-<p>本教程将带你从零创建一个完整的 Hello World 插件。</p>
+<h1>创建第一个插件<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<blockquote>
+<div><p>目标：从 0 到 1 创建一个 <code class="docutils literal notranslate"><span class="pre">hello_world</span></code> 插件，并在插件管理界面中成功触发。</p>
+</div></blockquote>
 <section id="id2">
-<h2>步骤 1：创建插件目录<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<h2>你将完成什么<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<ul class="simple">
+<li><p>创建插件目录与 <code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code></p></li>
+<li><p>编写一个最小可运行的插件类</p></li>
+<li><p>启动插件服务器并在 UI 里触发入口点</p></li>
+<li><p>通过 <code class="docutils literal notranslate"><span class="pre">/runs</span></code> API 进行一次可脚本化调用（可选）</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>0. 前置条件<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<ul class="simple">
+<li><p>已完成环境准备：<code class="docutils literal notranslate"><span class="pre">installation.md</span></code></p></li>
+<li><p>你当前位于项目根目录：<code class="docutils literal notranslate"><span class="pre">N.E.K.O/</span></code></p></li>
+<li><p>Python 3.11+（建议和主项目一致）</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>1. 创建插件目录<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在项目根目录执行：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>plugin/plugins/hello_world
 </pre></div>
 </div>
+<p>期望结构：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>N.E.K.O/
+└── plugin/
+    └── plugins/
+        └── hello_world/
+</pre></div>
+</div>
 </section>
-<section id="id3">
-<h2>步骤 2：创建配置文件<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
-<p>创建 <code class="docutils literal notranslate"><span class="pre">plugin/plugins/hello_world/plugin.toml</span></code>：</p>
+<hr class="docutils" />
+<section id="plugin-toml">
+<h2>2. 创建 <code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code><a class="headerlink" href="#plugin-toml" title="链接到此标题。">¶</a></h2>
+<p>新建文件：<code class="docutils literal notranslate"><span class="pre">plugin/plugins/hello_world/plugin.toml</span></code></p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[plugin]</span>
 <span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello_world&quot;</span>
 <span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello World Plugin&quot;</span>
-<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;一个简单的示例插件&quot;</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;My first N.E.K.O plugin&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;plugins.hello_world:HelloWorldPlugin&quot;</span>
 
 <span class="k">[plugin.sdk]</span>
 <span class="n">recommended</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=0.1.0,&lt;0.2.0&quot;</span>
 <span class="n">supported</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=0.1.0,&lt;0.3.0&quot;</span>
+<span class="n">untested</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=0.3.0,&lt;0.4.0&quot;</span>
+<span class="n">conflicts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&lt;0.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&gt;=0.4.0&quot;</span><span class="p">]</span>
+
+<span class="k">[plugin_runtime]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="n">auto_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>最关键的是两个字段：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>：插件唯一标识（建议与目录名一致）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entry</span></code>：入口类路径，格式 <code class="docutils literal notranslate"><span class="pre">模块路径:类名</span></code></p></li>
+</ul>
+</div>
 </section>
-<section id="id4">
-<h2>步骤 3：编写插件代码<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
-<p>创建 <code class="docutils literal notranslate"><span class="pre">plugin/plugins/hello_world/__init__.py</span></code>：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plugin.sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">NekoPluginBase</span><span class="p">,</span> <span class="n">neko_plugin</span><span class="p">,</span> <span class="n">plugin_entry</span><span class="p">,</span> <span class="n">lifecycle</span><span class="p">,</span> <span class="n">ok</span>
+<hr class="docutils" />
+<section id="id5">
+<h2>3. 创建插件代码<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>新建文件：<code class="docutils literal notranslate"><span class="pre">plugin/plugins/hello_world/__init__.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plugin.sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">NekoPluginBase</span><span class="p">,</span> <span class="n">neko_plugin</span><span class="p">,</span> <span class="n">plugin_entry</span><span class="p">,</span> <span class="n">worker</span><span class="p">,</span> <span class="n">ok</span>
 
 
 <span class="nd">@neko_plugin</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">HelloWorldPlugin</span><span class="p">(</span><span class="n">NekoPluginBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hello World 插件示例&quot;&quot;&quot;</span>
-
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;HelloWorldPlugin initialized&quot;</span><span class="p">)</span>
 
-    <span class="nd">@lifecycle</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;插件启动时执行&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;HelloWorldPlugin started!&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">}</span>
-
-    <span class="nd">@lifecycle</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;shutdown&quot;</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">on_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;插件关闭时执行&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HelloWorldPlugin stopped. Total calls: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;stopped&quot;</span><span class="p">}</span>
-
-    <span class="nd">@plugin_entry</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Greet&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;返回问候语&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="c1"># 不传 id 时，默认使用函数名 greet 作为 entry_id</span>
+    <span class="nd">@plugin_entry</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Greet&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Return greeting message&quot;</span><span class="p">)</span>
+    <span class="nd">@worker</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;问候函数&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greeting: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;call_count&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;greet called, name=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
-<section id="id5">
-<h3>代码解析<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>部分</p></th>
-<th class="head"><p>说明</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;neko_plugin</span></code></p></td>
-<td><p>标记类为 N.E.K.O 插件</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NekoPluginBase</span></code></p></td>
-<td><p>插件基类，提供 <code class="docutils literal notranslate"><span class="pre">logger</span></code>、<code class="docutils literal notranslate"><span class="pre">config</span></code>、<code class="docutils literal notranslate"><span class="pre">plugins</span></code> 等属性</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;lifecycle(id=&quot;startup&quot;)</span></code></p></td>
-<td><p>插件启动时自动调用</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;plugin_entry(id=&quot;greet&quot;)</span></code></p></td>
-<td><p>定义外部可调用的入口点</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ok(data=...)</span></code></p></td>
-<td><p>返回标准成功响应</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">**_</span></code></p></td>
-<td><p>捕获额外参数（推荐写法）</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
 <section id="id6">
-<h2>步骤 4：测试插件<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
-<p>启动插件服务器后，通过 HTTP API 调用：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/plugin/trigger<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;plugin_id&quot;: &quot;hello_world&quot;,</span>
-<span class="s1">    &quot;entry_id&quot;: &quot;greet&quot;,</span>
-<span class="s1">    &quot;args&quot;: {&quot;name&quot;: &quot;N.E.K.O&quot;}</span>
-<span class="s1">  }&#39;</span>
+<h3>这段代码的关键点<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<ul class="simple">
+<li><p>必须使用 <code class="docutils literal notranslate"><span class="pre">&#64;neko_plugin</span></code> 标记插件类</p></li>
+<li><p>插件类必须继承 <code class="docutils literal notranslate"><span class="pre">NekoPluginBase</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;plugin_entry</span></code> 可以不写 <code class="docutils literal notranslate"><span class="pre">id</span></code>，系统会自动使用函数名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_schema</span></code> 也可以不手写，系统会根据函数签名自动推断</p></li>
+<li><p>同步函数建议加 <code class="docutils literal notranslate"><span class="pre">&#64;worker</span></code>，避免阻塞</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id7">
+<h2>4. 启动插件服务器<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>在项目根目录执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>plugin.user_plugin_server
 </pre></div>
 </div>
-<p>预期响应：</p>
+<p>若你不用 <code class="docutils literal notranslate"><span class="pre">uv</span></code>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>plugin.user_plugin_server
+</pre></div>
+</div>
+<p>看到类似日志表示启动成功：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>User plugin server starting on 127.0.0.1:48916
+... Loading plugins from .../plugin/plugins
+... Plugin ID: hello_world
+... Uvicorn running on http://127.0.0.1:48916
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">48916</span></code> 被占用，服务会自动切换到其他端口。请以终端日志中的实际端口为准。</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ui">
+<h2>5. 在 UI 中触发插件<a class="headerlink" href="#ui" title="链接到此标题。">¶</a></h2>
+<ol class="arabic simple">
+<li><p>浏览器打开：<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:48916/ui</span></code>（替换成你的实际端口）</p></li>
+<li><p>输入启动日志中的 4 位管理员验证码</p></li>
+<li><p>进入 <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> 页面，找到 <code class="docutils literal notranslate"><span class="pre">hello_world</span></code></p></li>
+<li><p>进入入口点列表，触发 <code class="docutils literal notranslate"><span class="pre">greet</span></code></p></li>
+<li><p>参数示例：<code class="docutils literal notranslate"><span class="pre">{&quot;name&quot;:</span> <span class="pre">&quot;N.E.K.O&quot;}</span></code></p></li>
+</ol>
+<p>成功后应看到返回：</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello, N.E.K.O!&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;call_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello, N.E.K.O!&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h2>简化写法<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
-<p>SDK 支持多种简化方式，减少样板代码：</p>
-<section id="id">
-<h3>省略 id（自动推断）<a class="headerlink" href="#id" title="链接到此标题。">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@plugin_entry</span><span class="p">()</span>  <span class="c1"># id 自动为 &quot;greet&quot;</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">})</span>
+<hr class="docutils" />
+<section id="runs-api">
+<h2>6. 用 <code class="docutils literal notranslate"><span class="pre">/runs</span></code> API 触发（可选）<a class="headerlink" href="#runs-api" title="链接到此标题。">¶</a></h2>
+<section id="run">
+<h3>6.1 创建一次 run<a class="headerlink" href="#run" title="链接到此标题。">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:48916/runs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;plugin_id&quot;: &quot;hello_world&quot;,</span>
+<span class="s1">    &quot;entry_id&quot;: &quot;greet&quot;,</span>
+<span class="s1">    &quot;args&quot;: {&quot;name&quot;: &quot;API&quot;}</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+<p>典型返回：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;running&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expires_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="schema">
-<h3>省略 schema（自动推断）<a class="headerlink" href="#schema" title="链接到此标题。">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@plugin_entry</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;greet&quot;</span><span class="p">)</span>  <span class="c1"># input_schema 从函数签名自动生成</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! x</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+<section id="id8">
+<h3>6.2 查询 run 结果<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>http://127.0.0.1:48916/runs/&lt;run_id&gt;
 </pre></div>
 </div>
-<p>自动推断规则：</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id9">
+<h2>7. 查看日志<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h2>
+<p>插件日志通常在：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>plugin/plugins/hello_world/logs/
+</pre></div>
+</div>
+<p>实时查看：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>plugin/plugins/hello_world/logs/*.log
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>常见问题<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h2>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Python 类型</p></th>
-<th class="head"><p>JSON Schema 类型</p></th>
+<tr class="row-odd"><th class="head"><p>问题</p></th>
+<th class="head"><p>现象</p></th>
+<th class="head"><p>排查要点</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<tr class="row-even"><td><p>插件未显示</p></td>
+<td><p>UI 里看不到 <code class="docutils literal notranslate"><span class="pre">hello_world</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code> 路径是否正确；<code class="docutils literal notranslate"><span class="pre">id</span></code> 是否重复；<code class="docutils literal notranslate"><span class="pre">entry</span></code> 是否可导入</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<tr class="row-odd"><td><p>插件加载失败</p></td>
+<td><p>启动日志报 import 错误</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">entry</span> <span class="pre">=</span> <span class="pre">&quot;plugins.hello_world:HelloWorldPlugin&quot;</span></code> 是否与类名一致</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<tr class="row-even"><td><p>入口点不存在</p></td>
+<td><p>调用时报 <code class="docutils literal notranslate"><span class="pre">entry_id</span></code> 错误</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">greet</span></code> 方法是否加了 <code class="docutils literal notranslate"><span class="pre">&#64;plugin_entry</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Optional[X]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[&quot;&lt;type&gt;&quot;,</span> <span class="pre">&quot;null&quot;]</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Annotated[X,</span> <span class="pre">&quot;desc&quot;]</span></code></p></td>
-<td><p>提取 description</p></td>
+<tr class="row-odd"><td><p>参数校验失败</p></td>
+<td><p>调用时报参数类型错误</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">greet(name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">&quot;World&quot;)</span></code> 的类型与传参是否一致</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="pydantic-model">
-<h3>使用 Pydantic Model<a class="headerlink" href="#pydantic-model" title="链接到此标题。">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">GreetParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span>
-    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="nd">@plugin_entry</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">GreetParams</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">ok</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! x</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
-</pre></div>
-</div>
-<div class="admonition seealso">
-<p class="admonition-title">参见</p>
-<p>了解 <a class="reference internal" href="project-structure.html"><span class="std std-doc">项目结构</span></a> 中 <code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code> 的完整配置选项。</p>
-</div>
-</section>
+<hr class="docutils" />
+<section id="id11">
+<h2>下一步<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h2>
+<ul class="simple">
+<li><p>学习装饰器：<code class="docutils literal notranslate"><span class="pre">../guide/decorators.md</span></code></p></li>
+<li><p>学习上下文能力：<code class="docutils literal notranslate"><span class="pre">../guide/context.md</span></code></p></li>
+<li><p>学习状态管理：<code class="docutils literal notranslate"><span class="pre">../guide/state.md</span></code></p></li>
+<li><p>查看完整示例：<code class="docutils literal notranslate"><span class="pre">../examples/index.md</span></code></p></li>
+</ul>
 </section>
 </section>
 
@@ -600,7 +645,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-02-28 21:30</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -624,20 +670,25 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">第一个插件</a><ul>
-<li><a class="reference internal" href="#id2">步骤 1：创建插件目录</a></li>
-<li><a class="reference internal" href="#id3">步骤 2：创建配置文件</a></li>
-<li><a class="reference internal" href="#id4">步骤 3：编写插件代码</a><ul>
-<li><a class="reference internal" href="#id5">代码解析</a></li>
+<li><a class="reference internal" href="#">创建第一个插件</a><ul>
+<li><a class="reference internal" href="#id2">你将完成什么</a></li>
+<li><a class="reference internal" href="#id3">0. 前置条件</a></li>
+<li><a class="reference internal" href="#id4">1. 创建插件目录</a></li>
+<li><a class="reference internal" href="#plugin-toml">2. 创建 <code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code></a></li>
+<li><a class="reference internal" href="#id5">3. 创建插件代码</a><ul>
+<li><a class="reference internal" href="#id6">这段代码的关键点</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6">步骤 4：测试插件</a></li>
-<li><a class="reference internal" href="#id7">简化写法</a><ul>
-<li><a class="reference internal" href="#id">省略 id（自动推断）</a></li>
-<li><a class="reference internal" href="#schema">省略 schema（自动推断）</a></li>
-<li><a class="reference internal" href="#pydantic-model">使用 Pydantic Model</a></li>
+<li><a class="reference internal" href="#id7">4. 启动插件服务器</a></li>
+<li><a class="reference internal" href="#ui">5. 在 UI 中触发插件</a></li>
+<li><a class="reference internal" href="#runs-api">6. 用 <code class="docutils literal notranslate"><span class="pre">/runs</span></code> API 触发（可选）</a><ul>
+<li><a class="reference internal" href="#run">6.1 创建一次 run</a></li>
+<li><a class="reference internal" href="#id8">6.2 查询 run 结果</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id9">7. 查看日志</a></li>
+<li><a class="reference internal" href="#id10">常见问题</a></li>
+<li><a class="reference internal" href="#id11">下一步</a></li>
 </ul>
 </li>
 </ul>
@@ -655,6 +706,7 @@
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

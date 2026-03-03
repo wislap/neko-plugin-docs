@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="Ok / Err / Result" href="result.html"><link rel="prev" title="Adapter 类型" href="../adapter/types.html">
+<meta property="og:title" content="ErrorCode" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/reference/types/errors.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="统一错误码定义 合并了 sdk/errors.py 和 typedefs/result.py 中的错误码定义。 提供 IntEnum 错误码（与 HTTP 状态码对齐）和字符串别名。 Usage:, from plugin._types import ErrorCode, ERROR_NAMES# 使用错误码 code = ErrorCode.VALIDATION_ERROR # 400# ..." />
+<meta name="description" content="统一错误码定义 合并了 sdk/errors.py 和 typedefs/result.py 中的错误码定义。 提供 IntEnum 错误码（与 HTTP 状态码对齐）和字符串别名。 Usage:, from plugin._types import ErrorCode, ERROR_NAMES# 使用错误码 code = ErrorCode.VALIDATION_ERROR # 400# ..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-03-03T18:47:16+08:00" /><link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="Ok / Err / Result" href="result.html"><link rel="prev" title="Adapter 类型" href="../adapter/types.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/reference/types/errors.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>ErrorCode - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
@@ -497,6 +507,17 @@ return fail(ErrorCode.NOT_FOUND, &quot;资源不存在&quot;)</p>
 <dd><p>插件频率限制 (1004)</p>
 </dd></dl>
 
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin._types.errors.ErrorCode" title="plugin._types.errors.ErrorCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin._types.errors.ErrorCode</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/index.html#id3">开发指南 / 导入方式</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../guide/responses.html#errorcode">响应格式 / ErrorCode</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../sdk/responses.html#module-plugin.sdk.responses">响应格式 API / 示例 / 示例</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
 <span class="sig-name descname"><span class="pre">SUCCESS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#id0" title="链接到此定义。">¶</a></dt>
@@ -529,37 +550,37 @@ return fail(ErrorCode.NOT_FOUND, &quot;资源不存在&quot;)</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">RATE_LIMITED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">429</span></span><a class="headerlink" href="#id6" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">INVALID_RESPONSE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">422</span></span><a class="headerlink" href="#id6" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id7">
-<span class="sig-name descname"><span class="pre">INTERNAL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">500</span></span><a class="headerlink" href="#id7" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RATE_LIMITED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">429</span></span><a class="headerlink" href="#id7" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">NOT_IMPLEMENTED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">501</span></span><a class="headerlink" href="#id8" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">INTERNAL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">500</span></span><a class="headerlink" href="#id8" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">DEPENDENCY_MISSING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">502</span></span><a class="headerlink" href="#id9" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NOT_IMPLEMENTED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">501</span></span><a class="headerlink" href="#id9" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id10">
-<span class="sig-name descname"><span class="pre">NOT_READY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">503</span></span><a class="headerlink" href="#id10" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DEPENDENCY_MISSING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">502</span></span><a class="headerlink" href="#id10" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id11">
-<span class="sig-name descname"><span class="pre">TIMEOUT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">504</span></span><a class="headerlink" href="#id11" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NOT_READY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">503</span></span><a class="headerlink" href="#id11" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id12">
-<span class="sig-name descname"><span class="pre">INVALID_RESPONSE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">422</span></span><a class="headerlink" href="#id12" title="链接到此定义。">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TIMEOUT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">504</span></span><a class="headerlink" href="#id12" title="链接到此定义。">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -674,7 +695,8 @@ return fail(ErrorCode.NOT_FOUND, &quot;资源不存在&quot;)</p>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-03-03 18:47</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -723,13 +745,13 @@ return fail(ErrorCode.NOT_FOUND, &quot;资源不存在&quot;)</p>
 <li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">ErrorCode.FORBIDDEN</span></code></a></li>
 <li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">ErrorCode.NOT_FOUND</span></code></a></li>
 <li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">ErrorCode.CONFLICT</span></code></a></li>
-<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">ErrorCode.RATE_LIMITED</span></code></a></li>
-<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">ErrorCode.INTERNAL</span></code></a></li>
-<li><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">ErrorCode.NOT_IMPLEMENTED</span></code></a></li>
-<li><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">ErrorCode.DEPENDENCY_MISSING</span></code></a></li>
-<li><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">ErrorCode.NOT_READY</span></code></a></li>
-<li><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">ErrorCode.TIMEOUT</span></code></a></li>
-<li><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">ErrorCode.INVALID_RESPONSE</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">ErrorCode.INVALID_RESPONSE</span></code></a></li>
+<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">ErrorCode.RATE_LIMITED</span></code></a></li>
+<li><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">ErrorCode.INTERNAL</span></code></a></li>
+<li><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">ErrorCode.NOT_IMPLEMENTED</span></code></a></li>
+<li><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">ErrorCode.DEPENDENCY_MISSING</span></code></a></li>
+<li><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">ErrorCode.NOT_READY</span></code></a></li>
+<li><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">ErrorCode.TIMEOUT</span></code></a></li>
 <li><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">ErrorCode.PLUGIN_NOT_RUNNING</span></code></a></li>
 <li><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">ErrorCode.PLUGIN_CRASHED</span></code></a></li>
 <li><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">ErrorCode.CIRCULAR_CALL</span></code></a></li>
@@ -757,6 +779,7 @@ return fail(ErrorCode.NOT_FOUND, &quot;资源不存在&quot;)</p>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="Run 状态机" href="run-lifecycle.html"><link rel="prev" title="实时监听 (Watchers)" href="../bus/watchers.html">
+<meta property="og:title" content="Run/Export 执行系统" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/architecture/runs/index.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="Run 系统管理插件入口点的 任务执行生命周期 ，提供状态追踪、进度上报和多格式数据导出。 核心概念:,, 概念, 说明,,, Run, 一次入口点执行的完整生命周期记录,, RunRecord, Run 的状态数据（状态、进度、时间戳、结果）,, Export, Run 执行过程中产出的数据（文本、JSON、URL、二进制）,, ExportItem, 单个导出数据项,,,, 架构: 数据..." />
+<meta name="description" content="Run 系统管理插件入口点的 任务执行生命周期 ，提供状态追踪、进度上报和多格式数据导出。 核心概念:,, 概念, 说明,,, Run, 一次入口点执行的完整生命周期记录,, RunRecord, Run 的状态数据（状态、进度、时间戳、结果）,, Export, Run 执行过程中产出的数据（文本、JSON、URL、二进制）,, ExportItem, 单个导出数据项,,,, 架构: 数据..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-02-28T21:30:06+08:00" /><link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="Run 状态机" href="run-lifecycle.html"><link rel="prev" title="实时监听 (Watchers)" href="../bus/watchers.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/architecture/runs/index.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>Run/Export 执行系统 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
@@ -521,7 +531,8 @@ Plugin → ctx.export_push(type, text/json/url/binary)
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-02-28 21:30</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -566,6 +577,7 @@ Plugin → ctx.export_push(type, text/json/url/binary)
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

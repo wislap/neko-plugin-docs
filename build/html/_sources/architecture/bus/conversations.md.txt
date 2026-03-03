@@ -29,12 +29,29 @@ class ConversationRecord(BusRecord):
 通过 `self.ctx.bus.conversations` 访问。
 
 ```python
+import time
+
 # 获取最近对话
 convos = self.ctx.bus.conversations.get(max_count=20)
 
-# 按插件过滤
-convos = self.ctx.bus.conversations.get(plugin_id="chat_adapter")
+# 按 conversation_id 过滤
+convos = self.ctx.bus.conversations.get(conversation_id="conv_123", max_count=50)
+
+# 按时间过滤（最近 1 小时）
+convos = self.ctx.bus.conversations.get(since_ts=time.time() - 3600, max_count=100)
+
+# 便捷方法：按 ID 获取
+convos = self.ctx.bus.conversations.get_by_id("conv_123", max_count=50)
 ```
+
+### 参数
+
+| 参数 | 类型 | 默认 | 说明 |
+|------|------|------|------|
+| `conversation_id` | `str` | `None` | 只返回指定会话 |
+| `max_count` | `int` | `50` | 最大返回数量 |
+| `since_ts` | `float` | `None` | 起始时间戳过滤 |
+| `timeout` | `float` | `5.0` | 超时时间 |
 
 ## 典型用例
 

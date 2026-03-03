@@ -154,6 +154,12 @@ conversations = self.ctx.bus.conversations
 
 # 记忆
 memory = self.ctx.bus.memory
+
+# 获取指定对话
+convos = self.ctx.bus.conversations.get(conversation_id="conv_123", max_count=20)
+
+# 获取指定记忆桶
+memories = self.ctx.bus.memory.get(bucket_id="user:alice", limit=20)
 ```
 
 :::{seealso}

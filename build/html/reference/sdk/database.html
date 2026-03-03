@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="PluginStore" href="store.html"><link rel="prev" title="状态持久化 API" href="state.html">
+<meta property="og:title" content="PluginDatabase" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/reference/sdk/database.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="插件数据库管理器 提供基于 SQLAlchemy 的数据库支持，包括： - 自动创建数据库文件 - ORM 模型定义 - 同步和异步 Session 管理 - 简单易用的 API" />
+<meta name="description" content="插件数据库管理器 提供基于 SQLAlchemy 的数据库支持，包括： - 自动创建数据库文件 - ORM 模型定义 - 同步和异步 Session 管理 - 简单易用的 API" />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-03-03T18:47:16+08:00" /><link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="PluginStore" href="store.html"><link rel="prev" title="状态持久化 API" href="state.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/reference/sdk/database.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>PluginDatabase - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
@@ -409,6 +419,17 @@ users = result.scalars().all()</p>
 </div></blockquote>
 </dd>
 </dl>
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin.sdk.database.PluginDatabase" title="plugin.sdk.database.PluginDatabase"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.database.PluginDatabase</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/database.html#id2">数据库 / PluginDatabase / 初始化</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../guide/database.html#pluginkvstore">数据库 / PluginKVStore</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/index.html#id3">开发指南 / 导入方式</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="plugin.sdk.database.PluginDatabase.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/database.html#PluginDatabase.__init__"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.database.PluginDatabase.__init__" title="链接到此定义。">¶</a></dt>
@@ -654,6 +675,13 @@ del self.db.kv[&quot;key&quot;]</p>
 <p>此类是 PluginDatabase 的一部分，通过 db.kv 访问。
 如需独立的 KV 存储，请使用 PluginStore。</p>
 </div>
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin.sdk.database.PluginKVStore" title="plugin.sdk.database.PluginKVStore"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.database.PluginKVStore</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/index.html#id3">开发指南 / 导入方式</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="plugin.sdk.database.PluginKVStore.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plugin/sdk/database.html#PluginKVStore.get"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.database.PluginKVStore.get" title="链接到此定义。">¶</a></dt>
@@ -790,7 +818,8 @@ del self.db.kv[&quot;key&quot;]</p>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-03-03 18:47</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -861,6 +890,7 @@ del self.db.kv[&quot;key&quot;]</p>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

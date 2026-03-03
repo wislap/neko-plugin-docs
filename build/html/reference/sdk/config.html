@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="PluginRouter" href="router.html"><link rel="prev" title="装饰器 API" href="decorators.html">
+<meta property="og:title" content="PluginConfig" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/reference/sdk/config.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="Plugin config access helpers. This module provides a small, developer-friendly API for reading/updating the plugin&#x27;s own plugin.toml via the main process. Expand for references to plugin.sdk.c..." />
+<meta name="description" content="Plugin config access helpers. This module provides a small, developer-friendly API for reading/updating the plugin&#x27;s own plugin.toml via the main process. Expand for references to plugin.sdk.c..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-03-03T18:47:16+08:00" /><link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="PluginRouter" href="router.html"><link rel="prev" title="装饰器 API" href="decorators.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/reference/sdk/config.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>PluginConfig - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=57c836ec" />
@@ -374,10 +384,24 @@
 <p>Plugin config access helpers.</p>
 <p>This module provides a small, developer-friendly API for reading/updating the
 plugin's own <cite>plugin.toml</cite> via the main process.</p>
+<p><details><summary>Expand for references to <a class="reference internal" href="#module-plugin.sdk.config" title="plugin.sdk.config"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.config</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/config.html#id9">配置系统 / 错误处理</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="plugin.sdk.config.PluginConfigError">
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.sdk.config.</span></span><span class="sig-name descname"><span class="pre">PluginConfigError</span></span><a class="reference internal" href="../../_modules/plugin/sdk/config.html#PluginConfigError"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.config.PluginConfigError" title="链接到此定义。">¶</a></dt>
 <dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin.sdk.config.PluginConfigError" title="plugin.sdk.config.PluginConfigError"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.config.PluginConfigError</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/config.html#id9">配置系统 / 错误处理</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 </dd></dl>
 
 <dl class="py class">
@@ -385,6 +409,13 @@ plugin's own <cite>plugin.toml</cite> via the main process.</p>
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">plugin.sdk.config.</span></span><span class="sig-name descname"><span class="pre">PluginConfig</span></span><a class="reference internal" href="../../_modules/plugin/sdk/config.html#PluginConfig"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#plugin.sdk.config.PluginConfig" title="链接到此定义。">¶</a></dt>
 <dd><p>基类：<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(位于 Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>High-level wrapper around <cite>PluginContext.get_own_config/update_own_config</cite>.</p>
+<p><details><summary>Expand for references to <a class="reference internal" href="#plugin.sdk.config.PluginConfig" title="plugin.sdk.config.PluginConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">plugin.sdk.config.PluginConfig</span></code></a></summary><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../guide/index.html#id3">开发指南 / 导入方式</a></p></td>
+</tr>
+</tbody>
+</table>
+</details></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="plugin.sdk.config.PluginConfig.ctx">
 <span class="sig-name descname"><span class="pre">ctx</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="types.html#plugin.sdk.types.PluginContextProtocol" title="plugin.sdk.types.PluginContextProtocol"><span class="pre">PluginContextProtocol</span></a></span><a class="headerlink" href="#plugin.sdk.config.PluginConfig.ctx" title="链接到此定义。">¶</a></dt>
@@ -757,7 +788,8 @@ plugin's own <cite>plugin.toml</cite> via the main process.</p>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-03-03 18:47</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -824,6 +856,7 @@ plugin's own <cite>plugin.toml</cite> via the main process.</p>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

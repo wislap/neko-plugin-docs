@@ -1,0 +1,12 @@
+N.E.K.O
+Neko
+SDK
+FastAPI
+Uvicorn
+Pydantic
+MyST
+autodoc
+sphinxcontrib
+ZeroMQ
+MessagePlane
+RunToken

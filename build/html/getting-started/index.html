@@ -3,15 +3,25 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="环境准备" href="installation.html"><link rel="prev" title="N.E.K.O Plugin SDK" href="../index.html">
+<meta property="og:title" content="快速上手" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://127.0.0.1:8000/getting-started/index.html" />
+<meta property="og:site_name" content="N.E.K.O Plugin SDK" />
+<meta property="og:description" content="欢迎来到 N.E.K.O 插件开发！本章将帮助你在 5 分钟内 创建并运行第一个插件。 什么是 N.E.K.O 插件系统？: N.E.K.O 插件系统是一个基于 Python 的插件框架，允许开发者创建可扩展的功能模块,为neko agent添加更多可能性。核心设计理念： 进程隔离 ：每个插件运行在独立进程中，崩溃不会影响主系统, 异步优先 ：同步和异步函数均可，框架自动适配, 声明式 AP..." />
+<meta name="description" content="欢迎来到 N.E.K.O 插件开发！本章将帮助你在 5 分钟内 创建并运行第一个插件。 什么是 N.E.K.O 插件系统？: N.E.K.O 插件系统是一个基于 Python 的插件框架，允许开发者创建可扩展的功能模块,为neko agent添加更多可能性。核心设计理念： 进程隔离 ：每个插件运行在独立进程中，崩溃不会影响主系统, 异步优先 ：同步和异步函数均可，框架自动适配, 声明式 AP..." />
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <meta property="article:modified_time" content="2026-02-28T21:30:06+08:00" /><link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="环境准备" href="installation.html"><link rel="prev" title="N.E.K.O Plugin SDK" href="../index.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/getting-started/index.html">
+
+    <!-- Generated with Sphinx 9.0.4 and Furo 2025.12.19 -->
         <title>快速上手 - N.E.K.O Plugin SDK</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=57c836ec" />
@@ -219,7 +229,7 @@
   <ul class="current">
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">快速上手</a><input aria-label="Toggle navigation of 快速上手" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">环境准备</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html">第一个插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html">创建第一个插件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project-structure.html">项目结构</a></li>
 </ul>
 </li>
@@ -374,7 +384,7 @@
 <p>欢迎来到 N.E.K.O 插件开发！本章将帮助你在 <strong>5 分钟内</strong> 创建并运行第一个插件。</p>
 <section id="n-e-k-o">
 <h2>什么是 N.E.K.O 插件系统？<a class="headerlink" href="#n-e-k-o" title="链接到此标题。">¶</a></h2>
-<p>N.E.K.O 插件系统是一个基于 Python 的插件框架，允许开发者创建可扩展的功能模块。核心设计理念：</p>
+<p>N.E.K.O 插件系统是一个基于 Python 的插件框架，允许开发者创建可扩展的功能模块,为neko agent添加更多可能性。核心设计理念：</p>
 <ul class="simple">
 <li><p><strong>进程隔离</strong>：每个插件运行在独立进程中，崩溃不会影响主系统</p></li>
 <li><p><strong>异步优先</strong>：同步和异步函数均可，框架自动适配</p></li>
@@ -431,12 +441,18 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#id7">目录结构</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="first-plugin.html">第一个插件</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id2">步骤 1：创建插件目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id3">步骤 2：创建配置文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id4">步骤 3：编写插件代码</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id6">步骤 4：测试插件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id7">简化写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-plugin.html">创建第一个插件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id2">你将完成什么</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id3">0. 前置条件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id4">1. 创建插件目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#plugin-toml">2. 创建 <code class="docutils literal notranslate"><span class="pre">plugin.toml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id5">3. 创建插件代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id7">4. 启动插件服务器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#ui">5. 在 UI 中触发插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#runs-api">6. 用 <code class="docutils literal notranslate"><span class="pre">/runs</span></code> API 触发（可选）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id9">7. 查看日志</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id10">常见问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-plugin.html#id11">下一步</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="project-structure.html">项目结构</a><ul>
@@ -484,7 +500,8 @@
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+            <div class="last-updated">
+              Last updated on 2026-02-28 21:30</div>
           </div>
           <div class="right-details">
             <div class="icons">
@@ -529,6 +546,7 @@
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
