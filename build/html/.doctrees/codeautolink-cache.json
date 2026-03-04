@@ -1,38 +1,950 @@
 {
-  "getting-started/first-plugin": [
+  "architecture/bus/bus-list": [
     {
-      "source": "from plugin.sdk import NekoPluginBase, neko_plugin, plugin_entry, worker, ok\n\n\n@neko_plugin\nclass HelloWorldPlugin(NekoPluginBase):\n    def __init__(self, ctx):\n        super().__init__(ctx)\n        self.logger.info(\"HelloWorldPlugin initialized\")\n\n    # \u4e0d\u4f20 id \u65f6\uff0c\u9ed8\u8ba4\u4f7f\u7528\u51fd\u6570\u540d greet \u4f5c\u4e3a entry_id\n    @plugin_entry(name=\"Greet\", description=\"Return greeting message\")\n    @worker(timeout=10.0)\n    def greet(self, name: str = \"World\", **_):\n        self.logger.info(\"greet called, name={}\", name)\n        return ok(data={\"message\": f\"Hello, {name}!\"})\n",
+      "source": "msgs = client.get(max_count=100)\n\n# \u7cbe\u786e\u5339\u914d\nby_plugin = msgs.filter(plugin_id=\"my_plugin\")\nby_type = msgs.filter(type=\"text\")\nby_priority = msgs.filter(priority_min=5)\n\n# \u6b63\u5219\u5339\u914d\nby_pattern = msgs.filter(plugin_id_re=\"chat_.*\")\nby_content = msgs.filter(content_re=\"error|fail\")\n\n# \u65f6\u95f4\u8303\u56f4\nimport time\nrecent = msgs.filter(since_ts=time.time() - 3600)  # \u6700\u8fd1 1 \u5c0f\u65f6\n\n# \u7ec4\u5408\u8fc7\u6ee4\uff08AND \u5173\u7cfb\uff09\nfiltered = msgs.filter(plugin_id=\"chat\", priority_min=5, type=\"text\")\n",
       "names": [
         {
           "import_components": [
-            "super"
+            "time"
           ],
-          "code_str": "super",
-          "lineno": 7,
-          "end_lineno": 7,
+          "code_str": "time",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "import_target",
+          "resolved_location": "time"
+        },
+        {
+          "import_components": [
+            "time",
+            "time"
+          ],
+          "code_str": "time.time",
+          "lineno": 14,
+          "end_lineno": 14,
           "context": "none",
-          "resolved_location": "super"
+          "resolved_location": "time.time"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/bus-list",
+        "ref_id": "id2",
+        "headings": [
+          "BusList \u64cd\u4f5c",
+          "\u8fc7\u6ee4"
+        ]
+      },
+      "doc_lineno": 14
+    },
+    {
+      "source": "# \u6309\u65f6\u95f4\u6233\u6392\u5e8f\uff08\u9ed8\u8ba4\u5347\u5e8f\uff09\nby_time = msgs.sort(by=\"timestamp\")\n\n# \u964d\u5e8f\nby_time_desc = msgs.sort(by=\"timestamp\", reverse=True)\n\n# \u6309\u4f18\u5148\u7ea7\u6392\u5e8f\nby_priority = msgs.sort(by=\"priority\", reverse=True)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/bus-list",
+        "ref_id": "id3",
+        "headings": [
+          "BusList \u64cd\u4f5c",
+          "\u6392\u5e8f"
+        ]
+      },
+      "doc_lineno": 36
+    },
+    {
+      "source": "# \u5408\u5e76\u4e24\u4e2a\u5217\u8868\uff08\u6309\u552f\u4e00\u952e\u53bb\u91cd\uff09\ncombined = list1.merge(list2)\n\n# \u4ea4\u96c6\ncommon = list1.intersect(list2)\n\n# \u5dee\u96c6\nonly_in_1 = list1.difference(list2)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/bus-list",
+        "ref_id": "id5",
+        "headings": [
+          "BusList \u64cd\u4f5c",
+          "\u96c6\u5408\u8fd0\u7b97"
+        ]
+      },
+      "doc_lineno": 56
+    },
+    {
+      "source": "# \u83b7\u53d6\u7b2c\u4e00\u6761\nfirst = msgs[0] if len(msgs) > 0 else None\n\n# \u8f6c\u4e3a record \u5217\u8868\nrecords = msgs.dump_records()\n\n# \u8f6c\u4e3a\u53ef\u5e8f\u5217\u5316 dict \u5217\u8868\npayloads = msgs.dump()\n\n# \u957f\u5ea6\ncount = len(msgs)\n# \u6216\ncount2 = msgs.count()\n\n# \u8fed\u4ee3\nfor record in msgs:\n    print(record.content)\n",
+      "names": [
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 2,
+          "end_lineno": 2,
+          "context": "none",
+          "resolved_location": "len"
+        },
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 11,
+          "end_lineno": 11,
+          "context": "none",
+          "resolved_location": "len"
+        },
+        {
+          "import_components": [
+            "print"
+          ],
+          "code_str": "print",
+          "lineno": 17,
+          "end_lineno": 17,
+          "context": "none",
+          "resolved_location": "print"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/bus-list",
+        "ref_id": "id6",
+        "headings": [
+          "BusList \u64cd\u4f5c",
+          "\u8bbf\u95ee\u5143\u7d20"
+        ]
+      },
+      "doc_lineno": 69
+    }
+  ],
+  "architecture/bus/conversations": [
+    {
+      "source": "@dataclass(frozen=True, slots=True)\nclass ConversationRecord(BusRecord):\n    conversation_id: Optional[str] = None\n    turn_type: Optional[str] = None       # \"turn_end\" | \"session_end\" | \"renew_session\"\n    lanlan_name: Optional[str] = None\n    message_count: int = 0\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
         },
         {
           "import_components": [
             "str"
           ],
           "code_str": "str",
-          "lineno": 13,
-          "end_lineno": 13,
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 5,
+          "end_lineno": 5,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "int"
+          ],
+          "code_str": "int",
+          "lineno": 6,
+          "end_lineno": 6,
+          "context": "none",
+          "resolved_location": "int"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/conversations",
+        "ref_id": "conversationrecord",
+        "headings": [
+          "\u5bf9\u8bdd (Conversations)",
+          "ConversationRecord"
+        ]
+      },
+      "doc_lineno": 7
+    },
+    {
+      "source": "import time\n\n# \u83b7\u53d6\u6700\u8fd1\u5bf9\u8bdd\nconvos = self.ctx.bus.conversations.get(max_count=20)\n\n# \u6309 conversation_id \u8fc7\u6ee4\nconvos = self.ctx.bus.conversations.get(conversation_id=\"conv_123\", max_count=50)\n\n# \u6309\u65f6\u95f4\u8fc7\u6ee4\uff08\u6700\u8fd1 1 \u5c0f\u65f6\uff09\nconvos = self.ctx.bus.conversations.get(since_ts=time.time() - 3600, max_count=100)\n\n# \u4fbf\u6377\u65b9\u6cd5\uff1a\u6309 ID \u83b7\u53d6\nconvos = self.ctx.bus.conversations.get_by_id(\"conv_123\", max_count=50)\n",
+      "names": [
+        {
+          "import_components": [
+            "time"
+          ],
+          "code_str": "time",
+          "lineno": 1,
+          "end_lineno": 1,
+          "context": "import_target",
+          "resolved_location": "time"
+        },
+        {
+          "import_components": [
+            "time",
+            "time"
+          ],
+          "code_str": "time.time",
+          "lineno": 10,
+          "end_lineno": 10,
+          "context": "none",
+          "resolved_location": "time.time"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/conversations",
+        "ref_id": "conversationclient",
+        "headings": [
+          "\u5bf9\u8bdd (Conversations)",
+          "ConversationClient"
+        ]
+      },
+      "doc_lineno": 31
+    }
+  ],
+  "architecture/bus/index": [
+    {
+      "source": "@dataclass(frozen=True, slots=True)\nclass BusRecord:\n    kind: str                       # \"message\" | \"event\" | \"lifecycle\" | \"conversation\" | \"memory\"\n    type: str                       # \u5b50\u7c7b\u578b\n    timestamp: Optional[float]      # \u65f6\u95f4\u6233\n    plugin_id: Optional[str]        # \u6765\u6e90\u63d2\u4ef6\n    source: Optional[str]           # \u6765\u6e90\u6807\u8bc6\n    priority: int                   # \u4f18\u5148\u7ea7\n    content: Optional[str]          # \u5185\u5bb9\n    metadata: Dict[str, Any]        # \u5143\u6570\u636e\n    raw: Dict[str, Any]             # \u539f\u59cb\u6570\u636e\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "float"
+          ],
+          "code_str": "float",
+          "lineno": 5,
+          "end_lineno": 5,
+          "context": "none",
+          "resolved_location": "float"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 6,
+          "end_lineno": 6,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 7,
+          "end_lineno": 7,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "int"
+          ],
+          "code_str": "int",
+          "lineno": 8,
+          "end_lineno": 8,
+          "context": "none",
+          "resolved_location": "int"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 9,
+          "end_lineno": 9,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 10,
+          "end_lineno": 10,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 11,
+          "end_lineno": 11,
           "context": "none",
           "resolved_location": "str"
         }
       ],
       "example": {
-        "document": "getting-started/first-plugin",
-        "ref_id": "id5",
+        "document": "architecture/bus/index",
+        "ref_id": "id3",
         "headings": [
-          "\u521b\u5efa\u7b2c\u4e00\u4e2a\u63d2\u4ef6",
-          "3. \u521b\u5efa\u63d2\u4ef6\u4ee3\u7801"
+          "Bus \u901a\u4fe1\u7cfb\u7edf",
+          "\u6570\u636e\u6d41\u6a21\u578b"
         ]
       },
-      "doc_lineno": 76
+      "doc_lineno": 51
+    },
+    {
+      "source": "# \u83b7\u53d6\u6700\u8fd1\u7684\u6d88\u606f\nmessages = self.ctx.bus.messages.get(max_count=50)\n\n# \u83b7\u53d6\u67d0\u4e2a\u63d2\u4ef6\u7684\u4e8b\u4ef6\nevents = self.ctx.bus.events.get(plugin_id=\"my_plugin\", max_count=20)\n\n# \u83b7\u53d6\u751f\u547d\u5468\u671f\u8bb0\u5f55\nlifecycle = self.ctx.bus.lifecycle.get(max_count=10)\n\n# \u83b7\u53d6\u6307\u5b9a conversation_id \u7684\u5bf9\u8bdd\nconversations = self.ctx.bus.conversations.get(conversation_id=\"conv_123\", max_count=20)\n\n# \u83b7\u53d6\u6307\u5b9a bucket \u7684\u8bb0\u5fc6\nmemories = self.ctx.bus.memory.get(bucket_id=\"user:alice\", limit=20)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/index",
+        "ref_id": "id4",
+        "headings": [
+          "Bus \u901a\u4fe1\u7cfb\u7edf",
+          "\u8bbf\u95ee\u65b9\u5f0f"
+        ]
+      },
+      "doc_lineno": 69
+    },
+    {
+      "source": "msgs = self.ctx.bus.messages.get(max_count=100)\n\n# \u8fc7\u6ee4\nhigh_priority = msgs.filter(priority_min=7)\nfrom_plugin = msgs.filter(plugin_id=\"my_plugin\")\n\n# \u6392\u5e8f\nby_time = msgs.sort(by=\"timestamp\", reverse=True)\n\n# \u622a\u65ad\ntop20 = by_time.limit(20)\n\n# \u96c6\u5408\u8fd0\u7b97\ncombined = msgs1.merge(msgs2)\ncommon = msgs1.intersect(msgs2)\ndiff = msgs1.difference(msgs2)\n\n# \u5bfc\u51fa\u7ed3\u679c\nrecords = msgs.dump_records()   # List[MessageRecord]\npayloads = msgs.dump()          # List[Dict[str, Any]]\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/index",
+        "ref_id": "buslist",
+        "headings": [
+          "Bus \u901a\u4fe1\u7cfb\u7edf",
+          "BusList \u64cd\u4f5c"
+        ]
+      },
+      "doc_lineno": 90
+    }
+  ],
+  "architecture/bus/memory": [
+    {
+      "source": "from plugin.sdk import MemoryClient\n\n# \u901a\u8fc7 ctx.bus\uff08\u63a8\u8350\uff09\nmemory = self.ctx.bus.memory\n\n# \u6216\u76f4\u63a5\u521b\u5efa\nmemory = MemoryClient(self.ctx)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/memory",
+        "ref_id": "memoryclient",
+        "headings": [
+          "\u8bb0\u5fc6 (Memory)",
+          "MemoryClient"
+        ]
+      },
+      "doc_lineno": 9
+    },
+    {
+      "source": "# \u4ece\u6307\u5b9a bucket \u83b7\u53d6\u8bb0\u5fc6\nmemories = memory.get(bucket_id=\"user:alice\", limit=50)\n\n# \u8c03\u6574\u8d85\u65f6\nmemories = memory.get(bucket_id=\"session:chat_001\", limit=20, timeout=3.0)\n\n# \u5f02\u6b65\u7248\u672c\nmemories = await memory.get_async(bucket_id=\"user:alice\", limit=50)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/memory",
+        "ref_id": "id1",
+        "headings": [
+          "\u8bb0\u5fc6 (Memory)",
+          "\u57fa\u672c\u64cd\u4f5c"
+        ]
+      },
+      "doc_lineno": 21
+    },
+    {
+      "source": "@dataclass(frozen=True)\nclass MemoryRecord(BusRecord):\n    bucket_id: str = \"default\"\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/memory",
+        "ref_id": "memoryrecord",
+        "headings": [
+          "\u8bb0\u5fc6 (Memory)",
+          "MemoryRecord"
+        ]
+      },
+      "doc_lineno": 42
+    }
+  ],
+  "architecture/bus/messages": [
+    {
+      "source": "@dataclass(frozen=True, slots=True)\nclass MessageRecord(BusRecord):\n    message_id: Optional[str] = None\n    message_type: Optional[str] = None    # \"text\" | \"url\" | \"binary\" | \"binary_url\"\n    description: Optional[str] = None\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 5,
+          "end_lineno": 5,
+          "context": "none",
+          "resolved_location": "str"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/messages",
+        "ref_id": "messagerecord",
+        "headings": [
+          "\u6d88\u606f (Messages)",
+          "MessageRecord"
+        ]
+      },
+      "doc_lineno": 7
+    },
+    {
+      "source": "# \u83b7\u53d6\u6700\u8fd1 50 \u6761\u6d88\u606f\nmsgs = self.ctx.bus.messages.get(max_count=50)\n\n# \u6309\u63d2\u4ef6\u8fc7\u6ee4\nmsgs = self.ctx.bus.messages.get(plugin_id=\"chat_plugin\", max_count=20)\n\n# \u6309\u4f18\u5148\u7ea7\u8fc7\u6ee4\nmsgs = self.ctx.bus.messages.get(priority_min=5, max_count=10)\n\n# \u5f02\u6b65\u7248\u672c\nmsgs = await self.ctx.bus.messages.get_async(max_count=50)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/messages",
+        "ref_id": "id2",
+        "headings": [
+          "\u6d88\u606f (Messages)",
+          "MessageClient",
+          "\u83b7\u53d6\u6d88\u606f"
+        ]
+      },
+      "doc_lineno": 26
+    },
+    {
+      "source": "msgs = self.ctx.bus.messages.get(max_count=100)\n\n# \u8fc7\u6ee4\uff1a\u53ea\u770b\u6587\u672c\u6d88\u606f\ntext_msgs = msgs.filter(type=\"text\")\n\n# \u8fc7\u6ee4\uff1a\u53ea\u770b\u9ad8\u4f18\u5148\u7ea7\nurgent = msgs.filter(priority_min=8)\n\n# \u6392\u5e8f\uff1a\u6309\u65f6\u95f4\u5012\u5e8f\nrecent = msgs.sort(by=\"timestamp\", reverse=True)\n\n# \u83b7\u53d6\u7b2c\u4e00\u6761\nfirst = msgs[0] if len(msgs) > 0 else None\n\n# \u8f6c\u4e3a record \u5217\u8868\nrecords = msgs.dump_records()\n\n# \u8f6c\u4e3a\u53ef\u5e8f\u5217\u5316 dict \u5217\u8868\npayloads = msgs.dump()\n\n# \u7edf\u8ba1\ncount = len(msgs)\n",
+      "names": [
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "len"
+        },
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 22,
+          "end_lineno": 22,
+          "context": "none",
+          "resolved_location": "len"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/messages",
+        "ref_id": "messagelist",
+        "headings": [
+          "\u6d88\u606f (Messages)",
+          "MessageList \u64cd\u4f5c"
+        ]
+      },
+      "doc_lineno": 55
+    }
+  ],
+  "architecture/bus/records": [
+    {
+      "source": "@dataclass(frozen=True, slots=True)\nclass BusRecord:\n    kind: str                       # \"message\" | \"event\" | \"lifecycle\" | \"conversation\" | \"memory\"\n    type: str                       # \u5b50\u7c7b\u578b\uff08\u5982 message_type, event type\uff09\n    timestamp: Optional[float]      # Unix \u65f6\u95f4\u6233\n    plugin_id: Optional[str]        # \u6765\u6e90\u63d2\u4ef6 ID\n    source: Optional[str]           # \u6765\u6e90\u6807\u8bc6\n    priority: int                   # \u4f18\u5148\u7ea7 (0-10)\n    content: Optional[str]          # \u6587\u672c\u5185\u5bb9\n    metadata: Dict[str, Any]        # \u989d\u5916\u5143\u6570\u636e\n    raw: Dict[str, Any]             # \u539f\u59cb payload\uff08\u5b8c\u6574\u4fdd\u7559\uff09\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "float"
+          ],
+          "code_str": "float",
+          "lineno": 5,
+          "end_lineno": 5,
+          "context": "none",
+          "resolved_location": "float"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 6,
+          "end_lineno": 6,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 7,
+          "end_lineno": 7,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "int"
+          ],
+          "code_str": "int",
+          "lineno": 8,
+          "end_lineno": 8,
+          "context": "none",
+          "resolved_location": "int"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 9,
+          "end_lineno": 9,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 10,
+          "end_lineno": 10,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 11,
+          "end_lineno": 11,
+          "context": "none",
+          "resolved_location": "str"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/records",
+        "ref_id": "busrecord",
+        "headings": [
+          "\u8bb0\u5f55\u4e0e\u8fc7\u6ee4",
+          "BusRecord \u57fa\u7c7b"
+        ]
+      },
+      "doc_lineno": 7
+    },
+    {
+      "source": "@dataclass(frozen=True)\nclass BusFilter:\n    kind: Optional[str] = None           # \u7cbe\u786e\u5339\u914d kind\n    type: Optional[str] = None           # \u7cbe\u786e\u5339\u914d type\n    plugin_id: Optional[str] = None      # \u7cbe\u786e\u5339\u914d plugin_id\n    source: Optional[str] = None         # \u7cbe\u786e\u5339\u914d source\n    kind_re: Optional[str] = None        # \u6b63\u5219\u5339\u914d kind\n    type_re: Optional[str] = None        # \u6b63\u5219\u5339\u914d type\n    plugin_id_re: Optional[str] = None   # \u6b63\u5219\u5339\u914d plugin_id\n    source_re: Optional[str] = None      # \u6b63\u5219\u5339\u914d source\n    content_re: Optional[str] = None     # \u6b63\u5219\u5339\u914d content\n    priority_min: Optional[int] = None   # \u6700\u4f4e\u4f18\u5148\u7ea7\n    since_ts: Optional[float] = None     # \u8d77\u59cb\u65f6\u95f4\u6233\n    until_ts: Optional[float] = None     # \u7ed3\u675f\u65f6\u95f4\u6233\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 5,
+          "end_lineno": 5,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 6,
+          "end_lineno": 6,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 7,
+          "end_lineno": 7,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 8,
+          "end_lineno": 8,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 9,
+          "end_lineno": 9,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 10,
+          "end_lineno": 10,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 11,
+          "end_lineno": 11,
+          "context": "none",
+          "resolved_location": "str"
+        },
+        {
+          "import_components": [
+            "int"
+          ],
+          "code_str": "int",
+          "lineno": 12,
+          "end_lineno": 12,
+          "context": "none",
+          "resolved_location": "int"
+        },
+        {
+          "import_components": [
+            "float"
+          ],
+          "code_str": "float",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "float"
+        },
+        {
+          "import_components": [
+            "float"
+          ],
+          "code_str": "float",
+          "lineno": 14,
+          "end_lineno": 14,
+          "context": "none",
+          "resolved_location": "float"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/records",
+        "ref_id": "busfilter",
+        "headings": [
+          "\u8bb0\u5f55\u4e0e\u8fc7\u6ee4",
+          "BusFilter \u8fc7\u6ee4\u5668"
+        ]
+      },
+      "doc_lineno": 39
+    },
+    {
+      "source": "# \u83b7\u53d6\u67d0\u4e2a\u63d2\u4ef6\u7684\u9ad8\u4f18\u5148\u7ea7\u6d88\u606f\nmessages = client.get(\n    plugin_id=\"my_plugin\",\n    priority_min=7,\n    max_count=50,\n)\n",
+      "names": [],
+      "example": {
+        "document": "architecture/bus/records",
+        "ref_id": "id4",
+        "headings": [
+          "\u8bb0\u5f55\u4e0e\u8fc7\u6ee4",
+          "BusFilter \u8fc7\u6ee4\u5668",
+          "\u8fc7\u6ee4\u5668\u7ec4\u5408"
+        ]
+      },
+      "doc_lineno": 60
+    }
+  ],
+  "architecture/bus/watchers": [
+    {
+      "source": "messages = (\n    self.ctx.bus.messages\n    .get(max_count=100)\n    .filter(priority_min=5)\n    .sort(by=\"timestamp\", reverse=True)\n    .limit(50)\n)\n\nwatcher = messages.watch(debounce_ms=100.0)\n\n@watcher.subscribe(on=(\"add\", \"change\"))\ndef on_delta(delta: BusListDelta):\n    print(f\"Added: {len(delta.added)}, Removed: {len(delta.removed)}\")\n    print(f\"Current total: {len(delta.current)}\")\n\nwatcher.start()\n\n# ... \u9000\u51fa\u65f6\u505c\u6b62\nwatcher.stop()\n",
+      "names": [
+        {
+          "import_components": [
+            "print"
+          ],
+          "code_str": "print",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "print"
+        },
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "len"
+        },
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 13,
+          "end_lineno": 13,
+          "context": "none",
+          "resolved_location": "len"
+        },
+        {
+          "import_components": [
+            "print"
+          ],
+          "code_str": "print",
+          "lineno": 14,
+          "end_lineno": 14,
+          "context": "none",
+          "resolved_location": "print"
+        },
+        {
+          "import_components": [
+            "len"
+          ],
+          "code_str": "len",
+          "lineno": 14,
+          "end_lineno": 14,
+          "context": "none",
+          "resolved_location": "len"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/watchers",
+        "ref_id": "id2",
+        "headings": [
+          "\u5b9e\u65f6\u76d1\u542c (Watchers)",
+          "\u63a8\u8350\u7528\u6cd5"
+        ]
+      },
+      "doc_lineno": 27
+    },
+    {
+      "source": "@dataclass(frozen=True)\nclass BusListDelta(Generic[TRecord]):\n    kind: str                          # Bus \u7c7b\u578b\n    added: Tuple[TRecord, ...]         # \u65b0\u589e\u7684\u8bb0\u5f55\n    removed: Tuple[DedupeKey, ...]     # \u5220\u9664\u7684\u53bb\u91cd key\n    current: BusList[TRecord]          # \u53d8\u5316\u540e\u7684\u5b8c\u6574\u5217\u8868\n",
+      "names": [
+        {
+          "import_components": [
+            "str"
+          ],
+          "code_str": "str",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "none",
+          "resolved_location": "str"
+        }
+      ],
+      "example": {
+        "document": "architecture/bus/watchers",
+        "ref_id": "buslistdelta",
+        "headings": [
+          "\u5b9e\u65f6\u76d1\u542c (Watchers)",
+          "BusListDelta"
+        ]
+      },
+      "doc_lineno": 59
+    }
+  ],
+  "guide/context": [
+    {
+      "source": "class MyPlugin(NekoPluginBase):\n    @plugin_entry()\n    def example(self):\n        self.logger.debug(\"\u8c03\u8bd5\u4fe1\u606f\")\n        self.logger.info(\"\u4e00\u822c\u4fe1\u606f\")\n        self.logger.warning(\"\u8b66\u544a\u4fe1\u606f\")\n        self.logger.error(\"\u9519\u8bef\u4fe1\u606f\")\n        self.logger.exception(\"\u5f02\u5e38\u4fe1\u606f\uff08\u5305\u542b\u5806\u6808\uff09\")\n",
+      "names": [],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "id3",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "\u65e5\u5fd7"
+        ]
+      },
+      "doc_lineno": 19
+    },
+    {
+      "source": "def __init__(self, ctx):\n    super().__init__(ctx)\n    self.file_logger = self.enable_file_logging(log_level=\"INFO\")\n    self.logger = self.file_logger  # \u540c\u65f6\u8f93\u51fa\u5230\u6587\u4ef6\u548c\u63a7\u5236\u53f0\n",
+      "names": [
+        {
+          "import_components": [
+            "super"
+          ],
+          "code_str": "super",
+          "lineno": 2,
+          "end_lineno": 2,
+          "context": "none",
+          "resolved_location": "super"
+        }
+      ],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "id4",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "\u65e5\u5fd7",
+          "\u6587\u4ef6\u65e5\u5fd7"
+        ]
+      },
+      "doc_lineno": 32
+    },
+    {
+      "source": "@plugin_entry(id=\"long_task\")\ndef long_task(self, **_):\n    total = 100\n    for i in range(total):\n        self._do_step(i)\n        self.report_status({\n            \"status\": \"processing\",\n            \"current_step\": i + 1,\n            \"total_steps\": total,\n            \"progress\": (i + 1) / total * 100,\n            \"message\": f\"\u5904\u7406\u4e2d: {i + 1}/{total}\",\n        })\n\n    self.report_status({\"status\": \"completed\", \"message\": \"\u4efb\u52a1\u5b8c\u6210\"})\n    return {\"completed\": True}\n",
+      "names": [
+        {
+          "import_components": [
+            "range"
+          ],
+          "code_str": "range",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "none",
+          "resolved_location": "range"
+        }
+      ],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "id5",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "\u72b6\u6001\u4e0a\u62a5"
+        ]
+      },
+      "doc_lineno": 43
+    },
+    {
+      "source": "self.ctx.push_message(\n    source=\"my_feature\",          # \u6d88\u606f\u6765\u6e90\u6807\u8bc6\n    message_type=\"text\",          # \"text\" | \"url\" | \"binary\" | \"binary_url\"\n    description=\"\u64cd\u4f5c\u5b8c\u6210\",       # \u6d88\u606f\u63cf\u8ff0\n    priority=5,                   # \u4f18\u5148\u7ea7 (0-10)\n    content=\"\u4efb\u52a1\u5df2\u6210\u529f\u5b8c\u6210\",     # \u6587\u672c\u5185\u5bb9\u6216 URL\n    metadata={\"task_id\": \"123\"},  # \u989d\u5916\u5143\u6570\u636e\n)\n",
+      "names": [],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "id6",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "\u6d88\u606f\u63a8\u9001"
+        ]
+      },
+      "doc_lineno": 65
+    },
+    {
+      "source": "# \u6587\u672c\u6d88\u606f\nself.ctx.push_message(\n    source=\"chat_handler\",\n    message_type=\"text\",\n    description=\"\u6d88\u606f\u56de\u590d\",\n    priority=5,\n    content=\"\u5904\u7406\u5b8c\u6210\",\n)\n\n# URL \u6d88\u606f\nself.ctx.push_message(\n    source=\"web_scraper\",\n    message_type=\"url\",\n    description=\"\u53d1\u73b0\u65b0\u6587\u7ae0\",\n    priority=7,\n    content=\"https://example.com/article\",\n    metadata={\"title\": \"Example Article\"},\n)\n\n# \u4e8c\u8fdb\u5236\u6570\u636e\uff08\u5c0f\u6587\u4ef6\uff09\nwith open(\"image.png\", \"rb\") as f:\n    self.ctx.push_message(\n        source=\"image_processor\",\n        message_type=\"binary\",\n        description=\"\u5904\u7406\u540e\u7684\u56fe\u7247\",\n        priority=6,\n        binary_data=f.read(),\n        metadata={\"format\": \"png\"},\n    )\n\n# \u5927\u6587\u4ef6 URL \u5f15\u7528\nself.ctx.push_message(\n    source=\"file_processor\",\n    message_type=\"binary_url\",\n    description=\"\u5927\u6587\u4ef6\u5904\u7406\u5b8c\u6210\",\n    priority=8,\n    binary_url=\"https://storage.example.com/large_file.zip\",\n    metadata={\"size\": 1024 * 1024 * 100},\n)\n",
+      "names": [
+        {
+          "import_components": [
+            "open"
+          ],
+          "code_str": "open",
+          "lineno": 21,
+          "end_lineno": 21,
+          "context": "none",
+          "resolved_location": "open"
+        }
+      ],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "id9",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "\u6d88\u606f\u63a8\u9001",
+          "\u793a\u4f8b"
+        ]
+      },
+      "doc_lineno": 96
+    },
+    {
+      "source": "# \u6d88\u606f\nmessages = self.ctx.bus.messages\n\n# \u4e8b\u4ef6\nevents = self.ctx.bus.events\n\n# \u751f\u547d\u5468\u671f\nlifecycle = self.ctx.bus.lifecycle\n\n# \u5bf9\u8bdd\nconversations = self.ctx.bus.conversations\n\n# \u8bb0\u5fc6\nmemory = self.ctx.bus.memory\n\n# \u83b7\u53d6\u6307\u5b9a\u5bf9\u8bdd\nconvos = self.ctx.bus.conversations.get(conversation_id=\"conv_123\", max_count=20)\n\n# \u83b7\u53d6\u6307\u5b9a\u8bb0\u5fc6\u6876\nmemories = self.ctx.bus.memory.get(bucket_id=\"user:alice\", limit=20)\n",
+      "names": [],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "bus",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "Bus \u6570\u636e\u8bbf\u95ee"
+        ]
+      },
+      "doc_lineno": 142
+    },
+    {
+      "source": "# \u63a8\u9001\u6587\u672c\nself.ctx.export_push(type=\"text\", text=\"\u5904\u7406\u65e5\u5fd7...\")\n\n# \u63a8\u9001 JSON \u7ed3\u6784\u5316\u6570\u636e\nself.ctx.export_push(type=\"json\", json_data={\"result\": 42}, label=\"final_result\")\n\n# \u63a8\u9001 URL\nself.ctx.export_push(type=\"url\", url=\"https://example.com/report.pdf\")\n",
+      "names": [],
+      "example": {
+        "document": "guide/context",
+        "ref_id": "export",
+        "headings": [
+          "\u4e0a\u4e0b\u6587",
+          "Export \u63a8\u9001"
+        ]
+      },
+      "doc_lineno": 173
     }
   ]
 }
